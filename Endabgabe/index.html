@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="design.css">
+  <script src="Fudge/FudgeCore.js"></script>
+  <script src="FudgeStory/FudgeStory.js"></script>
+  <script src="./Build/Template.js"></script>
+  <title>Fudge Story Template</title>
+  <splash src="Images/Splash.png" />
+</head>
+
+<body>
+  <scene>
+    <div id="erzähler" class="speech">
+      <div id="erzählerName" class="name">
+      </div>
+      <div id="erzählerContent" class="content">
+      </div>
+    </div>
+    <canvas></canvas>
+
+    <speech class="speech">
+      <name class="name">
+      </name>
+      <content class="content">
+      </content>
+    </speech>
+
+    <dialog type="text-page">
+    </dialog>
+    <dialog type="text">
+    </dialog>
+    <dialog type="inventory">
+      <button type="button">close</button>
+      <ul></ul>
+    </dialog>
+
+    <div type="interface" style="position:absolute; left:40%; bottom:11%">
+      <input name="a" type="text" disabled />
+
+      <meter name="a" min="0" max="100" value="0" disabled />
+
+    </div>
+  </scene>
+</body>
+
+</html>
