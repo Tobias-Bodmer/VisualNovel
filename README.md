@@ -20,7 +20,7 @@
 | 14 | Enden                            |                                                                             
 
 ## Links
-### [Play now!](https://tobias-bodmer.github.io/VisualNovel/)
+### [Play now!](https://tobias-bodmer.github.io/VisualNovel/Endabgabe/)
 
 ### [Concept]()
 
