@@ -1,8 +1,9 @@
 declare namespace Template {
+    let animations: {};
+    function shakeyCamera(): Promise<void>;
+}
+declare namespace Template {
     let characters: {
-        Narrator: {
-            name: string;
-        };
         Unknown: {
             name: string;
             text: {
@@ -14,15 +15,20 @@ declare namespace Template {
                 T0005: string;
                 T0006: string;
                 T0007: string;
+            };
+        };
+        Blackangel: {
+            name: string;
+            text: {
+                T0001: string;
+                T0002: string;
+                T0003: string;
+                T0004: string;
+                T0005: string;
+                T0006: string;
+                T0007: string;
                 T0008: string;
                 T0009: string;
-                T0010: string;
-                T0011: string;
-                T0012: string;
-                T0013: string;
-                T0014: string;
-                T0015: string;
-                T0016: string;
             };
         };
         Protagonist: {
@@ -154,29 +160,30 @@ declare namespace Template {
 }
 declare namespace Template {
     let locations: {
-        brueckeErwachen: {
-            name: string;
-            background: string;
-        };
         bruecke: {
             name: string;
             background: string;
+            foreground: string;
         };
         wald: {
             name: string;
             background: string;
+            foreground: string;
         };
         muehle: {
             name: string;
             background: string;
+            foreground: string;
         };
         waldNacht: {
             name: string;
             background: string;
+            foreground: string;
         };
         portal: {
             name: string;
             background: string;
+            foreground: string;
         };
     };
 }

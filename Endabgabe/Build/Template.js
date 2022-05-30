@@ -1,30 +1,52 @@
 "use strict";
 var Template;
 (function (Template) {
+    Template.animations = {};
+    async function shakeyCamera() {
+        const shake = [
+            { transform: 'translateX(0) translateY(0px)' },
+            { transform: 'translateX(-20px) translateY(-10px)' },
+            { transform: 'translateX(20px) translateY(10px)' },
+            { transform: 'translateX(10px) translateY(5px)' },
+            { transform: 'translateX(-10px) translateY(-5px)' },
+            { transform: 'translateX(0) translateY(0px)' }
+        ];
+        const timing = {
+            duration: 300,
+            iterations: 1,
+        };
+        document.body.animate(shake, timing);
+    }
+    Template.shakeyCamera = shakeyCamera;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
     Template.characters = {
-        Narrator: {
-            name: ""
-        },
         Unknown: {
             name: "???",
             text: {
                 T0000: "Hey... Hey geht's dir gut?",
                 T0001: "Es scheint so als wären wir in Genesis.",
-                T0002: "Ich bin ... wie heißt du?",
-                T0003: "Schön dich kennen zu lernen.",
-                T0004: "Das weiß ich auch nicht. Ich wollte mich auch gerade ausloggen da wurden wir alle hier her teleportiert.",
-                T0005: "Aber nicht nur das... der Abmelde-Button ist jetzt ausgegraut.",
-                T0006: "...",
-                T0007: "Ha... Hast du diese Benachrichtigung gerade gelesen? Was soll das? Ist das ein schlechter Witz?",
-                T0008: "Hast du den Skandal vor einigen Wochen nicht mitbekommen?",
-                T0009: "Vor einigen Wochen hat es eine Hackergruppe wohl geschafft... Also sie haben VR-Headsets zum explodieren gebracht...",
-                T0010: "Was sollen wir denn jetzt tun?",
-                T0011: "Okay ich geh los und versuch mehr herauszufinden.",
-                T0012: "Psst... Hey ich hab mitbekommen das ihr etwas gegen unsere Situation machen wollt.",
-                T0013: "Ähm... also nein bzw. nicht so ganz.",
-                T0014: "Das ist sehr gut zu hören. Ich habe ebenfalls mitbekommen das andere Leute hinweise im Wald am großen Baum gefunden haben.",
-                T0015: "Das weiß ich leider auch nicht so genau.",
-                T0016: "Ach ja mir fällt gerade ein das einer von ihnen einen großen Baum erwähnt hat."
+                T0002: "Ich bin Blackangel wie heißt du?",
+                T0003: "Psst... Hey ich hab mitbekommen das ihr etwas gegen unsere Situation machen wollt.",
+                T0004: "Ähm... also nein bzw. nicht so ganz.",
+                T0005: "Das ist sehr gut zu hören. Ich habe ebenfalls mitbekommen das andere Leute hinweise im Wald am großen Baum gefunden haben.",
+                T0006: "Das weiß ich leider auch nicht so genau.",
+                T0007: "Ach ja mir fällt gerade ein das einer von ihnen einen großen Baum erwähnt hat."
+            }
+        },
+        Blackangel: {
+            name: "Blackangel",
+            text: {
+                T0001: "Schön dich kennen zu lernen.",
+                T0002: "Das weiß ich auch nicht. Ich wollte mich auch gerade ausloggen da wurden wir alle hier her teleportiert.",
+                T0003: "Aber nicht nur das... der Abmelde-Button ist jetzt ausgegraut.",
+                T0004: "...",
+                T0005: "Ha... Hast du diese Benachrichtigung gerade gelesen? Was soll das? Ist das ein schlechter Witz?",
+                T0006: "Hast du den Skandal vor einigen Wochen nicht mitbekommen?",
+                T0007: "Vor einigen Wochen hat es eine Hackergruppe wohl geschafft... Also sie haben VR-Headsets zum explodieren gebracht...",
+                T0008: "Was sollen wir denn jetzt tun?",
+                T0009: "Okay ich geh los und versuch mehr herauszufinden.",
             }
         },
         Protagonist: {
@@ -219,29 +241,30 @@ var Template;
 var Template;
 (function (Template) {
     Template.locations = {
-        brueckeErwachen: {
-            name: "BrueckeErwachen",
-            background: "Images/Brücke1.jpg"
-        },
         bruecke: {
             name: "Bruecke",
-            background: "Images/Brücke.jpg"
+            background: "Images/Brücke.jpg",
+            foreground: ""
         },
         wald: {
             name: "Wald",
-            background: "Images/Wald.jpg"
+            background: "Images/Wald.jpg",
+            foreground: ""
         },
         muehle: {
             name: "Muehle",
-            background: "Images/Mühle.jpg"
+            background: "Images/Mühle.jpg",
+            foreground: ""
         },
         waldNacht: {
             name: "WaldNacht",
-            background: "Images/WaldNacht.jpg"
+            background: "Images/WaldNacht.jpg",
+            foreground: ""
         },
         portal: {
             name: "Portal",
-            background: "Images/Portal.png"
+            background: "Images/Portal.jpg",
+            foreground: ""
         }
     };
 })(Template || (Template = {}));
@@ -446,19 +469,16 @@ var Template;
 var Template;
 (function (Template) {
     async function Introduction() {
-        await Template.ƒS.Location.show(Template.locations.brueckeErwachen);
-        await Template.ƒS.update(1);
-        await Template.ƒS.Sound.fade(Template.sound.city, 0.5, 4, true);
-        await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0000);
-        Template.ƒS.Sound.fade(Template.sound.intro, 0.2, 2, true);
         await Template.ƒS.Location.show(Template.locations.bruecke);
-        await Template.ƒS.update(1);
-        await Template.ƒS.Sound.fade(Template.sound.city, 1, 2, true);
+        Template.ƒS.Sound.fade(Template.sound.city, 0.2, 8, true);
+        await Template.ƒS.update(4);
+        await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0000);
+        Template.ƒS.Sound.fade(Template.sound.city, 0.5, 2, true);
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0000);
         await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0001);
         await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0002);
         Template.dataForSave.Protagonist.name = await Template.ƒS.Speech.getInput();
-        await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0003);
+        await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0001);
         let decision = {
             D1: "...",
             D2: "Aber ich hab mich ausgeloggt warum bin ich noch hier?"
@@ -470,16 +490,16 @@ var Template;
                 break;
             case decision.D2:
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, decision.D2);
-                await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0004);
-                await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0005);
+                await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0002);
+                await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0003);
                 break;
         }
-        //TODO: Shaky-Camera
-        //TODO: eigene klasse machen für erzähler
+        await Template.shakeyCamera();
+        Template.ƒS.Sound.fade(Template.sound.city, 0.01, 0, true);
         await Template.erzähler.erzählerSpeaks("???", "Don't quit the game or you will die!");
-        await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0006);
+        await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0004);
         await Template.erzähler.erzählerHide();
-        await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0007);
+        await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0005);
         decision = {
             D1: "...",
             D2: "Wie sollte das möglich sein?"
@@ -491,7 +511,7 @@ var Template;
                 break;
             case decision.D2:
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, decision.D2);
-                await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0008);
+                await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0006);
                 decision = {
                     D1: "Ja",
                     D2: "Nein?"
@@ -503,21 +523,21 @@ var Template;
                         break;
                     case decision.D2:
                         await Template.ƒS.Speech.tell(Template.characters.Protagonist, decision.D2);
-                        await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0009);
+                        await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0007);
                         break;
                 }
                 break;
         }
-        //TODO: Shaky-Camera
+        await Template.shakeyCamera();
         await Template.erzähler.erzählerSpeaks("???", "We have manipulated your VR-Headsets.");
-        await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0006);
+        await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0004);
         await Template.erzähler.erzählerHide();
-        await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0010);
+        await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0008);
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0001);
-        await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0011);
+        await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0009);
         await Template.ƒS.Speech.clear();
         await Template.ƒS.Text.print("Einige Zeit später...");
-        await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0012);
+        await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0003);
         decision = {
             D1: "Ja da hast du richtig gehört.",
             D2: "Hast du uns etwa belauscht."
@@ -529,12 +549,12 @@ var Template;
                 break;
             case decision.D2:
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, decision.D2);
-                await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0013);
+                await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0004);
                 break;
         }
-        await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0014);
+        await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0005);
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0002);
-        await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0015);
+        await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0006);
         decision = {
             D1: "Naja gut, dann mach ich mich mal auf den Weg, danke.",
             D2: "Weist du zumindest nach was ich Ausschau halten soll?"
@@ -546,12 +566,13 @@ var Template;
                 break;
             case decision.D2:
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, decision.D2);
-                await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0016);
+                await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0007);
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0003);
                 break;
         }
         await Template.ƒS.Speech.clear();
-        await Template.ƒS.Sound.fade(Template.sound.city, 0, 2, true);
+        Template.ƒS.Sound.fade(Template.sound.city, 0, 1);
+        //TODO: Transition
     }
     Template.Introduction = Introduction;
 })(Template || (Template = {}));

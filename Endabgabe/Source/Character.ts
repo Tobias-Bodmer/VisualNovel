@@ -1,28 +1,30 @@
 namespace Template {
     export let characters = {
-        Narrator: {
-            name: ""
-        },
         Unknown: {
             name: "???",
             text: {
                 T0000: "Hey... Hey geht's dir gut?",
                 T0001: "Es scheint so als wären wir in Genesis.",
-                T0002: "Ich bin ... wie heißt du?",
-                T0003: "Schön dich kennen zu lernen.",
-                T0004: "Das weiß ich auch nicht. Ich wollte mich auch gerade ausloggen da wurden wir alle hier her teleportiert.",
-                T0005: "Aber nicht nur das... der Abmelde-Button ist jetzt ausgegraut.",
-                T0006: "...",
-                T0007: "Ha... Hast du diese Benachrichtigung gerade gelesen? Was soll das? Ist das ein schlechter Witz?",
-                T0008: "Hast du den Skandal vor einigen Wochen nicht mitbekommen?",
-                T0009: "Vor einigen Wochen hat es eine Hackergruppe wohl geschafft... Also sie haben VR-Headsets zum explodieren gebracht...",
-                T0010: "Was sollen wir denn jetzt tun?",
-                T0011: "Okay ich geh los und versuch mehr herauszufinden.",
-                T0012: "Psst... Hey ich hab mitbekommen das ihr etwas gegen unsere Situation machen wollt.",
-                T0013: "Ähm... also nein bzw. nicht so ganz.",
-                T0014: "Das ist sehr gut zu hören. Ich habe ebenfalls mitbekommen das andere Leute hinweise im Wald am großen Baum gefunden haben.",
-                T0015: "Das weiß ich leider auch nicht so genau.",
-                T0016: "Ach ja mir fällt gerade ein das einer von ihnen einen großen Baum erwähnt hat."
+                T0002: "Ich bin Blackangel wie heißt du?",
+                T0003: "Psst... Hey ich hab mitbekommen das ihr etwas gegen unsere Situation machen wollt.",
+                T0004: "Ähm... also nein bzw. nicht so ganz.",
+                T0005: "Das ist sehr gut zu hören. Ich habe ebenfalls mitbekommen das andere Leute hinweise im Wald am großen Baum gefunden haben.",
+                T0006: "Das weiß ich leider auch nicht so genau.",
+                T0007: "Ach ja mir fällt gerade ein das einer von ihnen einen großen Baum erwähnt hat."
+            }
+        },
+        Blackangel: {
+            name: "Blackangel",
+            text: {
+                T0001: "Schön dich kennen zu lernen.",
+                T0002: "Das weiß ich auch nicht. Ich wollte mich auch gerade ausloggen da wurden wir alle hier her teleportiert.",
+                T0003: "Aber nicht nur das... der Abmelde-Button ist jetzt ausgegraut.",
+                T0004: "...",
+                T0005: "Ha... Hast du diese Benachrichtigung gerade gelesen? Was soll das? Ist das ein schlechter Witz?",
+                T0006: "Hast du den Skandal vor einigen Wochen nicht mitbekommen?",
+                T0007: "Vor einigen Wochen hat es eine Hackergruppe wohl geschafft... Also sie haben VR-Headsets zum explodieren gebracht...",
+                T0008: "Was sollen wir denn jetzt tun?",
+                T0009: "Okay ich geh los und versuch mehr herauszufinden.",
             }
         },
         Protagonist: {

@@ -1,28 +1,29 @@
 namespace Template {
   export let locations = {
-    brueckeErwachen: {
-      name: "BrueckeErwachen",
-      background: "Images/Brücke1.jpg"
-    },
     bruecke: {
       name: "Bruecke",
-      background: "Images/Brücke.jpg"
+      background: "Images/Brücke.jpg",
+      foreground: ""
     },
     wald: {
       name: "Wald",
-      background: "Images/Wald.jpg"
+      background: "Images/Wald.jpg",
+      foreground: ""
     },
     muehle: {
       name: "Muehle",
-      background: "Images/Mühle.jpg"
+      background: "Images/Mühle.jpg",
+      foreground: ""
     },
     waldNacht: {
       name: "WaldNacht",
-      background: "Images/WaldNacht.jpg"
+      background: "Images/WaldNacht.jpg",
+      foreground: ""
     },
     portal: {
       name: "Portal",
-      background: "Images/Portal.png"
+      background: "Images/Portal.jpg",
+      foreground: ""
     }
   };
 }
