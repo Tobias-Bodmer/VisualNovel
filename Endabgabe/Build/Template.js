@@ -470,8 +470,8 @@ var Template;
 (function (Template) {
     async function Introduction() {
         await Template.ƒS.Location.show(Template.locations.bruecke);
-        Template.ƒS.Sound.fade(Template.sound.city, 0.2, 8, true);
-        await Template.ƒS.update(4);
+        Template.ƒS.Sound.fade(Template.sound.city, 0.2, 4, true);
+        await Template.ƒS.update(4, "Images/wet.jpg", 1);
         await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0000);
         Template.ƒS.Sound.fade(Template.sound.city, 0.5, 2, true);
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0000);

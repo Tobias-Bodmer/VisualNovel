@@ -3,9 +3,9 @@ namespace Template {
 
         await ƒS.Location.show(locations.bruecke);
 
-        ƒS.Sound.fade(sound.city, 0.2, 8, true);
+        ƒS.Sound.fade(sound.city, 0.2, 4, true);
 
-        await ƒS.update(4);
+        await ƒS.update(4, "Images/wet.jpg", 1);
 
         await ƒS.Speech.tell(characters.Unknown, characters.Unknown.text.T0000);
 
