@@ -15,11 +15,20 @@ declare namespace Template {
                 T0005: string;
                 T0006: string;
                 T0007: string;
+                T0008: string;
+                T0009: string;
+                T0010: string;
+                T0011: string;
+                T0012: string;
+                T0013: string;
+                T0014: string;
+                T0015: string;
             };
         };
         Blackangel: {
             name: string;
             text: {
+                T0000: string;
                 T0001: string;
                 T0002: string;
                 T0003: string;
@@ -31,6 +40,18 @@ declare namespace Template {
                 T0009: string;
             };
         };
+        Mass: {
+            name: string;
+            text: {
+                T0000: string;
+            };
+        };
+        Antagonist: {
+            name: string;
+            text: {
+                T0000: string;
+            };
+        };
         Protagonist: {
             name: string;
             text: {
@@ -38,124 +59,92 @@ declare namespace Template {
                 T0001: string;
                 T0002: string;
                 T0003: string;
-            };
-        };
-        Prof: {
-            name: string;
-            pose: {
-                normal: string;
-            };
-        };
-        PlanetBig: {
-            name: string;
-            pose: {
-                normal: string;
-            };
-        };
-        PlanetSmall: {
-            name: string;
-            pose: {
-                normal: string;
-            };
-        };
-        BreadSun: {
-            name: string;
-            pose: {
-                normal: string;
-            };
-        };
-        Mothrin: {
-            name: string;
-            pose: {
-                normal: string;
-                shadow: string;
-                happy: string;
-                sad: string;
-                angry: string;
-                special: string;
-            };
-        };
-        Satina: {
-            name: string;
-            pose: {
-                normal: string;
-                happy: string;
-                sad: string;
-                angry: string;
-            };
-        };
-        Shubaru: {
-            name: string;
-            pose: {
-                normal: string;
-                happy: string;
-                sad: string;
-                angry: string;
-            };
-        };
-        Scales: {
-            name: string;
-            pose: {
-                normal: string;
-                happy: string;
-                sad: string;
-                angry: string;
-            };
-        };
-        Mother: {
-            name: string;
-            pose: {
-                normal: string;
+                T0004: string;
+                T0005: string;
+                T0006: string;
+                T0007: string;
+                T0008: string;
+                T0009: string;
+                T0010: string;
+                T0011: string;
+                T0012: string;
+                T0013: string;
+                T0014: string;
+                T0015: string;
+                T0016: string;
+                T0017: string;
+                T0018: string;
+                T0019: string;
+                T0020: string;
+                T0021: string;
+                T0022: string;
+                T0023: string;
+                T0024: string;
+                T0025: string;
+                T0026: string;
+                T0027: string;
+                T0028: string;
+                T0029: string;
+                T0030: string;
+                T0031: string;
+                T0032: string;
+                T0033: string;
+                T0034: string;
+                T0035: string;
+                T0036: string;
+                T0037: string;
+                T0038: string;
+                T0039: string;
+                T0040: string;
+                T0041: string;
+                T0042: string;
+                T0043: string;
+                T0044: string;
+                T0045: string;
+                T0046: string;
+                T0047: string;
+                T0048: string;
+                T0049: string;
+                T0050: string;
+                T0051: string;
+                T0052: string;
+                T0053: string;
+                T0054: string;
+                T0055: string;
+                T0056: string;
             };
         };
     };
 }
 declare namespace Template {
     export let items: {
-        Donut: {
+        Sword: {
             name: string;
             description: string;
             image: string;
             handler: typeof changeform;
         };
-        Mothdust: {
+        CrystalBall: {
             name: string;
             description: string;
             image: string;
             handler: typeof cantBeUsedNow;
-            static: boolean;
         };
-        EvilDonut: {
+        UnknownCrystalBall: {
             name: string;
             description: string;
             image: string;
-            handler: typeof useDonut;
+            handler: typeof cantBeUsedNow;
         };
-        Bread: {
+        Book: {
             name: string;
             description: string;
             image: string;
-            handler: typeof useBread;
-        };
-        Chilli: {
-            name: string;
-            description: string;
-            image: string;
-            handler: typeof useChilli;
-        };
-        Flashlight: {
-            name: string;
-            description: string;
-            image: string;
-            handler: typeof useFlashlight;
+            handler: typeof cantBeUsedNow;
         };
     };
     function changeform(): void;
-    function useDonut(): void;
-    function useBread(): void;
-    function useChilli(): void;
     function cantBeUsedNow(): void;
-    function useFlashlight(): void;
     export {};
 }
 declare namespace Template {
@@ -170,17 +159,17 @@ declare namespace Template {
             background: string;
             foreground: string;
         };
-        muehle: {
-            name: string;
-            background: string;
-            foreground: string;
-        };
         waldNacht: {
             name: string;
             background: string;
             foreground: string;
         };
         portal: {
+            name: string;
+            background: string;
+            foreground: string;
+        };
+        black: {
             name: string;
             background: string;
             foreground: string;
@@ -208,39 +197,7 @@ declare namespace Template {
         Score: {
             score: number;
         };
-        Transformation: {
-            istransformed: boolean;
-        };
-        usedDonut: {
-            used: boolean;
-        };
-        usedBread: {
-            used: boolean;
-        };
-        usedChilli: {
-            used: boolean;
-        };
-        timeTraveled: {
-            timeTraveled: boolean;
-        };
-        usedFlashlight: {
-            used: boolean;
-        };
-        MothrinAffection: {
-            score: number;
-        };
-        SatinaAffection: {
-            score: number;
-        };
-        ShubaruAffection: {
-            score: number;
-        };
-        ScalesAffection: {
-            score: number;
-        };
-        Interacted_with_Scales: {
-            boolean: boolean;
-        };
+        Glade: boolean;
         state: {
             a: number;
         };
@@ -266,8 +223,23 @@ declare namespace Template {
     };
 }
 declare namespace Template {
+    function goodEnding(): ƒS.SceneReturn;
+    function badEnding(): ƒS.SceneReturn;
+    function credits(): ƒS.SceneReturn;
+}
+declare namespace Template {
+    function city1(): ƒS.SceneReturn;
+    function city2(): ƒS.SceneReturn;
+}
+declare namespace Template {
     function forest(): ƒS.SceneReturn;
 }
 declare namespace Template {
-    function Introduction(): ƒS.SceneReturn;
+    function glade(): ƒS.SceneReturn;
+}
+declare namespace Template {
+    function introduction(): ƒS.SceneReturn;
+}
+declare namespace Template {
+    function portal(): ƒS.SceneReturn;
 }

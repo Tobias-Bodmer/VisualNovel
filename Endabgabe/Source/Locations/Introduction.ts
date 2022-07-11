@@ -1,11 +1,11 @@
 namespace Template {
-    export async function Introduction(): ƒS.SceneReturn {
+    export async function introduction(): ƒS.SceneReturn {
 
         await ƒS.Location.show(locations.bruecke);
 
         ƒS.Sound.fade(sound.city, 0.2, 4, true);
 
-        await ƒS.update(4, "Images/wet.jpg", 1);
+        await ƒS.update(1);
 
         await ƒS.Speech.tell(characters.Unknown, characters.Unknown.text.T0000);
 
@@ -19,7 +19,7 @@ namespace Template {
 
         dataForSave.Protagonist.name = await ƒS.Speech.getInput();
 
-        await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0001);
+        await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0000);
 
         let decision = {
             D1: "...",
@@ -36,24 +36,24 @@ namespace Template {
             case decision.D2:
                 await ƒS.Speech.tell(characters.Protagonist, decision.D2);
 
-                await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0002);
+                await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0001);
 
-                await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0003);
+                await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0002);
 
                 break;
         }
 
         await shakeyCamera();
 
-        ƒS.Sound.fade(sound.city, 0.01, 0, true);
+        await ƒS.Sound.fade(sound.city, 0.05, 0.5, true);
 
         await erzähler.erzählerSpeaks("???", "Don't quit the game or you will die!");
 
-        await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0004);
+        await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0003);
 
         await erzähler.erzählerHide();
 
-        await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0005);
+        await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0004);
 
         decision = {
             D1: "...",
@@ -70,7 +70,7 @@ namespace Template {
             case decision.D2:
                 await ƒS.Speech.tell(characters.Protagonist, decision.D2);
 
-                await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0006);
+                await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0005);
 
                 decision = {
                     D1: "Ja",
@@ -87,7 +87,7 @@ namespace Template {
                     case decision.D2:
                         await ƒS.Speech.tell(characters.Protagonist, decision.D2);
 
-                        await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0007);
+                        await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0006);
 
                         break;
                 }
@@ -99,15 +99,18 @@ namespace Template {
 
         await erzähler.erzählerSpeaks("???", "We have manipulated your VR-Headsets.");
 
-        await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0004);
+        await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0003);
 
         await erzähler.erzählerHide();
 
-        await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0008);
+        await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0007);
 
         await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0001);
 
-        await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0009);
+        await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0008);
+
+        //TODO: give funkgerät 
+        await ƒS.Speech.tell(characters.Protagonist, "Hey, Warte, nimm das hier. So können wir in Kontakt bleiben.");
 
         await ƒS.Speech.clear();
 
@@ -167,6 +170,6 @@ namespace Template {
 
         ƒS.Sound.fade(sound.city, 0, 1);
 
-        //TODO: Transition
+        forest();
     }
 }

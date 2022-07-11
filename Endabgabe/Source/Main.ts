@@ -20,11 +20,10 @@ namespace Template {
 
     //Menu
     gameMenu = ƒS.Menu.create(inGameMenu, buttonFunctionalities, "gameMenu");
+    gameMenu.close();
 
-    //define the sequenceof scenes, each scene as an object with a reference
     let scenes: ƒS.Scenes = [
-      //Main Story
-      { scene: Introduction, name: "Introduction" },
+      { scene: introduction, name: "Introduction" },
     ];
 
     let uiElement: HTMLElement = document.querySelector("[type=interface]");
@@ -32,7 +31,6 @@ namespace Template {
     dataForSave.state = ƒS.Progress.setData(dataForSave.state, uiElement);
     // uiElement.setAttribute("value", "50");
 
-    //start the sequence
     ƒS.Progress.go(scenes);
   }
 

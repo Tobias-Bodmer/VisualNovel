@@ -1,77 +1,36 @@
 namespace Template {
     export let items = {
-        Donut: {
-            name: "Hole-y Donut",
-            description: "A suspicious looking donut",
-            image: "Images/Items/Donut.png",
-            //Add function
+        Sword: {
+            name: "Dragon Slayer Sword",
+            description: "One of the legendary swords which one weared by the Dragon Slayer.",
+            image: "Images/Items/Sword.png",
             handler: changeform
-            //zum nicht entfernen:
-            //static: true
         },
-        Mothdust: {
-            name: "Mothdust",
-            description: "A jar filled with mothdust",
-            image: "Images/Items/MothDust.png",
-            //Add function
+        CrystalBall: {
+            name: "Crystal Ball",
+            description: "A way to keep in touch with a group or your guild.",
+            image: "Images/Items/CrystalBall.png",
             handler: cantBeUsedNow,
-            //zum nicht entfernen:
-            static: true
         },
-        EvilDonut: {
-            name: "Unhole-y Donut",
-            description: "An evil, but tasty looking donut",
-            image: "Images/Items/EvilDonut.png",
-            //Add function
-            handler: useDonut
-            //zum nicht entfernen:
-            //static: true
+        UnknownCrystalBall: {
+            name: "The Second Crystal Ball",
+            description: "The crystal ball you found in the bushes.",
+            image: "Images/Items/CrystalBall.png",
+            handler: cantBeUsedNow,
         },
-        Bread: {
-            name: "Bread",
-            description: "Plain bread",
-            image: "Images/Items/Bread.png",
-            //Add function
-            handler: useBread
-            //zum nicht entfernen:
-            //static: true
-        },
-        Chilli: {
-            name: "Chilli",
-            description: "Delicious looking Chilli con Carne",
-            image: "Images/Items/Chilli.png",
-            //Add function
-            handler: useChilli
-            //zum nicht entfernen:
-            //static: true
-        },
-        Flashlight: {
-            name: "Flashlight",
-            description: "A flashlight",
-            image: "Images/Items/Flashlight.png",
-            //Add function
-            handler: useFlashlight
-            //zum nicht entfernen: 
-            //static: true
+        Book: {
+            name: "Book",
+            description: "The Book you found in the forest.",
+            image: "Images/Items/Book.png",
+            handler: cantBeUsedNow,
         }
     };
 
     function changeform(): void {
-        dataForSave.Transformation.istransformed = true;
+       
     }
-    function useDonut(): void {
-        dataForSave.usedDonut.used = true;
-    }
-    function useBread(): void {
-        dataForSave.usedBread.used = true;
-    }
-    function useChilli(): void {
-        dataForSave.usedChilli.used = true;
-    }
+    
     function cantBeUsedNow(): void {
         console.log("This can´t be used right now");
-    }
-    function useFlashlight(): void {
-        dataForSave.usedFlashlight.used = true;
     }
 }

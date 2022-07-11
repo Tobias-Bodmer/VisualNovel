@@ -10,11 +10,6 @@ namespace Template {
       background: "Images/Wald.jpg",
       foreground: ""
     },
-    muehle: {
-      name: "Muehle",
-      background: "Images/Mühle.jpg",
-      foreground: ""
-    },
     waldNacht: {
       name: "WaldNacht",
       background: "Images/WaldNacht.jpg",
@@ -23,6 +18,11 @@ namespace Template {
     portal: {
       name: "Portal",
       background: "Images/Portal.jpg",
+      foreground: ""
+    }, 
+    black: {
+      name: "Black",
+      background: "Images/Black.png",
       foreground: ""
     }
   };
