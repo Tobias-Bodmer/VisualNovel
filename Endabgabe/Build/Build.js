@@ -1,6 +1,79 @@
 "use strict";
 var Template;
 (function (Template) {
+    Template.ƒ = FudgeCore;
+    Template.ƒS = FudgeStory;
+    let gameMenu;
+    let inGameMenu = {
+        save: "Save",
+        load: "Load",
+        close: "Close"
+    };
+    let menu = true;
+    window.addEventListener("load", start);
+    function start(_event) {
+        Template.erzähler = new Template.Erzähler();
+        Template.ƒS.Speech.hide();
+        //Menu
+        gameMenu = Template.ƒS.Menu.create(inGameMenu, buttonFunctionalities, "gameMenu");
+        gameMenu.close();
+        let scenes = [
+            { scene: Template.introduction, name: "Introduction" },
+        ];
+        let uiElement = document.querySelector("[type=interface]");
+        // dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
+        Template.dataForSave.state = Template.ƒS.Progress.setData(Template.dataForSave.state, uiElement);
+        // uiElement.setAttribute("value", "50");
+        Template.ƒS.Progress.go(scenes);
+    }
+    async function buttonFunctionalities(_option) {
+        console.log(_option);
+        switch (_option) {
+            case inGameMenu.save:
+                await Template.ƒS.Progress.save();
+                break;
+            case inGameMenu.load:
+                await Template.ƒS.Progress.load();
+                break;
+            case inGameMenu.close:
+                gameMenu.close();
+                menu = false;
+                break;
+            // case inGameMenu.open:
+            //   gameMenu.open();
+            //   menu = true;
+            //   break;
+        }
+        // Shortcuts für's Menü
+        document.addEventListener("keydown", hndKeyPress);
+        async function hndKeyPress(_event) {
+            switch (_event.code) {
+                case Template.ƒ.KEYBOARD_CODE.F8:
+                    console.log("Save");
+                    await Template.ƒS.Progress.save();
+                    break;
+                case Template.ƒ.KEYBOARD_CODE.F9:
+                    console.log("Load");
+                    await Template.ƒS.Progress.load();
+                    break;
+                case Template.ƒ.KEYBOARD_CODE.M:
+                    if (menu) {
+                        console.log("Close");
+                        gameMenu.close();
+                        menu = false;
+                    }
+                    else {
+                        console.log("Open");
+                        gameMenu.open();
+                        menu = true;
+                    }
+                    break;
+            }
+        }
+    }
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
     const timing = { duration: 300, iterations: 1, };
     const shake = [
         { transform: 'translateX(0) translateY(0px)' }, { transform: 'translateX(-20px) translateY(-10px)' }, { transform: 'translateX(20px) translateY(10px)' },
@@ -203,78 +276,6 @@ var Template;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
-    Template.ƒ = FudgeCore;
-    Template.ƒS = FudgeStory;
-    let gameMenu;
-    let inGameMenu = {
-        save: "Save",
-        load: "Load",
-        close: "Close"
-    };
-    let menu = true;
-    window.addEventListener("load", start);
-    function start(_event) {
-        Template.erzähler = new Template.Erzähler();
-        //Menu
-        gameMenu = Template.ƒS.Menu.create(inGameMenu, buttonFunctionalities, "gameMenu");
-        gameMenu.close();
-        let scenes = [
-            { scene: Template.introduction, name: "Introduction" },
-        ];
-        let uiElement = document.querySelector("[type=interface]");
-        // dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
-        Template.dataForSave.state = Template.ƒS.Progress.setData(Template.dataForSave.state, uiElement);
-        // uiElement.setAttribute("value", "50");
-        Template.ƒS.Progress.go(scenes);
-    }
-    async function buttonFunctionalities(_option) {
-        console.log(_option);
-        switch (_option) {
-            case inGameMenu.save:
-                await Template.ƒS.Progress.save();
-                break;
-            case inGameMenu.load:
-                await Template.ƒS.Progress.load();
-                break;
-            case inGameMenu.close:
-                gameMenu.close();
-                menu = false;
-                break;
-            // case inGameMenu.open:
-            //   gameMenu.open();
-            //   menu = true;
-            //   break;
-        }
-        // Shortcuts für's Menü
-        document.addEventListener("keydown", hndKeyPress);
-        async function hndKeyPress(_event) {
-            switch (_event.code) {
-                case Template.ƒ.KEYBOARD_CODE.F8:
-                    console.log("Save");
-                    await Template.ƒS.Progress.save();
-                    break;
-                case Template.ƒ.KEYBOARD_CODE.F9:
-                    console.log("Load");
-                    await Template.ƒS.Progress.load();
-                    break;
-                case Template.ƒ.KEYBOARD_CODE.M:
-                    if (menu) {
-                        console.log("Close");
-                        gameMenu.close();
-                        menu = false;
-                    }
-                    else {
-                        console.log("Open");
-                        gameMenu.open();
-                        menu = true;
-                    }
-                    break;
-            }
-        }
-    }
-})(Template || (Template = {}));
-var Template;
-(function (Template) {
     class Erzähler {
         static container;
         constructor() {
@@ -390,7 +391,7 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0039);
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0040);
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0041);
-        await Template.ƒS.Speech.clear();
+        await Template.ƒS.Speech.hide();
         Template.ƒS.Sound.fade(Template.sound.city, 0, 1);
         Template.portal();
     }
@@ -404,7 +405,7 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0044);
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0045);
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0046);
-        await Template.ƒS.Speech.clear();
+        await Template.ƒS.Speech.hide();
         Template.ƒS.Sound.fade(Template.sound.city, 0, 1);
         Template.portal();
     }
@@ -423,7 +424,7 @@ var Template;
                 D1: "Umgebung untersuchen.",
                 D2: "Baum untersuchen."
             };
-            let answer = await Template.ƒS.Menu.getInput(decision, "class");
+            let answer = await Template.ƒS.Menu.getInput(decision, "decision");
             switch (answer) {
                 case decision.D1:
                     let random = Math.round(Math.random());
@@ -456,7 +457,7 @@ var Template;
                 D1: "Nicht ins Loch greifen.",
                 D2: "Ins Loch greifen."
             };
-            let answer = await Template.ƒS.Menu.getInput(decision, "class");
+            let answer = await Template.ƒS.Menu.getInput(decision, "decision");
             switch (answer) {
                 case decision.D1:
                     let random = Math.round(Math.random());
@@ -489,7 +490,7 @@ var Template;
                 D1: "Nicht lesen.",
                 D2: "Lesen."
             };
-            let answer = await Template.ƒS.Menu.getInput(decision, "class");
+            let answer = await Template.ƒS.Menu.getInput(decision, "decision");
             switch (answer) {
                 case decision.D1:
                     let random = Math.round(Math.random());
@@ -511,7 +512,7 @@ var Template;
             D1: "Nachschauen.",
             D2: "Ignorieren."
         };
-        let answer = await Template.ƒS.Menu.getInput(decision, "class");
+        let answer = await Template.ƒS.Menu.getInput(decision, "decision");
         switch (answer) {
             case decision.D1:
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0019);
@@ -523,7 +524,7 @@ var Template;
                     D1: "Lauschen.",
                     D2: "Antworten."
                 };
-                let answer = await Template.ƒS.Menu.getInput(decision, "class");
+                let answer = await Template.ƒS.Menu.getInput(decision, "decision");
                 switch (answer) {
                     case decision2.D2:
                         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0020);
@@ -531,7 +532,7 @@ var Template;
                 }
                 await Template.ƒS.Speech.tell(Template.characters.Unknown, "...");
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0021);
-                await Template.ƒS.Speech.clear();
+                await Template.ƒS.Speech.hide();
                 //TODO: Sound
                 Template.ƒS.Sound.fade(Template.sound.city, 0, 1);
                 Template.city1();
@@ -543,7 +544,7 @@ var Template;
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0024);
                 await Template.erzähler.erzählerHide();
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0025);
-                await Template.ƒS.Speech.clear();
+                await Template.ƒS.Speech.hide();
                 //TODO: Sound
                 Template.ƒS.Sound.fade(Template.sound.city, 0, 1);
                 Template.glade();
@@ -568,7 +569,7 @@ var Template;
             D1: "Abwarten.",
             D2: "Verstecken."
         };
-        let answer = await Template.ƒS.Menu.getInput(decision, "class");
+        let answer = await Template.ƒS.Menu.getInput(decision, "decision");
         switch (answer) {
             case decision.D1:
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0028);
@@ -588,7 +589,7 @@ var Template;
         await Template.ƒS.Speech.tell("Ein anderer", "Wir müssen sie aufhalten.");
         await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0014);
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0033);
-        await Template.ƒS.Speech.clear();
+        await Template.ƒS.Speech.hide();
         //TODO: Sound
         Template.ƒS.Sound.fade(Template.sound.city, 0, 1);
         Template.city2();
@@ -600,7 +601,7 @@ var Template;
     async function introduction() {
         await Template.ƒS.Location.show(Template.locations.bruecke);
         Template.ƒS.Sound.fade(Template.sound.city, 0.2, 4, true);
-        await Template.ƒS.update(1);
+        await Template.ƒS.update(4, "./Images/WackingUp.jpg", 1);
         await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0000);
         Template.ƒS.Sound.fade(Template.sound.city, 0.5, 2, true);
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0000);
@@ -612,7 +613,7 @@ var Template;
             D1: "...",
             D2: "Aber ich hab mich ausgeloggt warum bin ich noch hier?"
         };
-        let answer = await Template.ƒS.Menu.getInput(decision, "class");
+        let answer = await Template.ƒS.Menu.getInput(decision, "decision");
         switch (answer) {
             case decision.D1:
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, decision.D1);
@@ -633,7 +634,7 @@ var Template;
             D1: "...",
             D2: "Wie sollte das möglich sein?"
         };
-        answer = await Template.ƒS.Menu.getInput(decision, "class");
+        answer = await Template.ƒS.Menu.getInput(decision, "decision");
         switch (answer) {
             case decision.D1:
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, decision.D1);
@@ -645,7 +646,7 @@ var Template;
                     D1: "Ja",
                     D2: "Nein?"
                 };
-                answer = await Template.ƒS.Menu.getInput(decision, "class");
+                answer = await Template.ƒS.Menu.getInput(decision, "decision");
                 switch (answer) {
                     case decision.D1:
                         await Template.ƒS.Speech.tell(Template.characters.Protagonist, decision.D1);
@@ -666,14 +667,14 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0008);
         //TODO: give funkgerät 
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, "Hey, Warte, nimm das hier. So können wir in Kontakt bleiben.");
-        await Template.ƒS.Speech.clear();
+        await Template.ƒS.Speech.hide();
         await Template.ƒS.Text.print("Einige Zeit später...");
         await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0003);
         decision = {
             D1: "Ja da hast du richtig gehört.",
             D2: "Hast du uns etwa belauscht."
         };
-        answer = await Template.ƒS.Menu.getInput(decision, "class");
+        answer = await Template.ƒS.Menu.getInput(decision, "decision");
         switch (answer) {
             case decision.D1:
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, decision.D1);
@@ -690,7 +691,7 @@ var Template;
             D1: "Naja gut, dann mach ich mich mal auf den Weg, danke.",
             D2: "Weist du zumindest nach was ich Ausschau halten soll?"
         };
-        answer = await Template.ƒS.Menu.getInput(decision, "class");
+        answer = await Template.ƒS.Menu.getInput(decision, "decision");
         switch (answer) {
             case decision.D1:
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, decision.D1);
@@ -701,7 +702,7 @@ var Template;
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0003);
                 break;
         }
-        await Template.ƒS.Speech.clear();
+        await Template.ƒS.Speech.hide();
         Template.ƒS.Sound.fade(Template.sound.city, 0, 1);
         Template.forest();
     }
@@ -719,7 +720,7 @@ var Template;
             D1: "Angriff.",
             D2: "Beobachten."
         };
-        let answer = await Template.ƒS.Menu.getInput(decision, "class");
+        let answer = await Template.ƒS.Menu.getInput(decision, "decision");
         switch (answer) {
             case decision.D1:
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0047);
@@ -731,7 +732,7 @@ var Template;
                     D1: "Angriff.",
                     D2: "Beobachten."
                 };
-                let answer = await Template.ƒS.Menu.getInput(decision, "class");
+                let answer = await Template.ƒS.Menu.getInput(decision, "decision");
                 switch (answer) {
                     case decision.D1:
                         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0047);
@@ -745,7 +746,7 @@ var Template;
                             D1: "Angriff.",
                             D2: "Beobachten."
                         };
-                        let answer = await Template.ƒS.Menu.getInput(decision, "class");
+                        let answer = await Template.ƒS.Menu.getInput(decision, "decision");
                         switch (answer) {
                             case decision.D1:
                                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0047);
@@ -760,7 +761,7 @@ var Template;
                                     D1: "Abwarten.",
                                     D2: "Schwert ziehen und zuschlagen."
                                 };
-                                let answer = await Template.ƒS.Menu.getInput(decision, "class");
+                                let answer = await Template.ƒS.Menu.getInput(decision, "decision");
                                 switch (answer) {
                                     case decision.D1:
                                         //TODO: Spieler stirbt Böses Gewinnt für immer gefangen...
@@ -781,7 +782,7 @@ var Template;
                         }
                         break;
                 }
-                await Template.ƒS.Speech.clear();
+                await Template.ƒS.Speech.hide();
                 //TODO: Sound
                 Template.ƒS.Sound.fade(Template.sound.city, 0, 1);
         }

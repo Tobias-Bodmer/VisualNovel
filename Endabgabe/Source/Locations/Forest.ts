@@ -17,7 +17,7 @@ namespace Template {
                 D2: "Baum untersuchen."
             };
 
-            let answer = await ƒS.Menu.getInput(decision, "class");
+            let answer = await ƒS.Menu.getInput(decision, "decision");
             switch (answer) {
                 case decision.D1:
                     let random: number = Math.round(Math.random());
@@ -57,7 +57,7 @@ namespace Template {
                 D2: "Ins Loch greifen."
             };
 
-            let answer = await ƒS.Menu.getInput(decision, "class");
+            let answer = await ƒS.Menu.getInput(decision, "decision");
             switch (answer) {
                 case decision.D1:
                     let random: number = Math.round(Math.random());
@@ -97,7 +97,7 @@ namespace Template {
                 D2: "Lesen."
             };
 
-            let answer = await ƒS.Menu.getInput(decision, "class");
+            let answer = await ƒS.Menu.getInput(decision, "decision");
             switch (answer) {
                 case decision.D1:
                     let random: number = Math.round(Math.random());
@@ -123,7 +123,7 @@ namespace Template {
             D2: "Ignorieren."
         };
 
-        let answer = await ƒS.Menu.getInput(decision, "class");
+        let answer = await ƒS.Menu.getInput(decision, "decision");
 
         switch (answer) {
             case decision.D1:
@@ -141,7 +141,7 @@ namespace Template {
                     D2: "Antworten."
                 };
 
-                let answer = await ƒS.Menu.getInput(decision, "class");
+                let answer = await ƒS.Menu.getInput(decision, "decision");
 
                 switch (answer) {
                     case decision2.D2:
@@ -155,7 +155,7 @@ namespace Template {
                 await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0021);
 
 
-                await ƒS.Speech.clear();
+                await ƒS.Speech.hide();
 
                 //TODO: Sound
                 ƒS.Sound.fade(sound.city, 0, 1);
@@ -177,7 +177,7 @@ namespace Template {
                 await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0025);
 
 
-                await ƒS.Speech.clear();
+                await ƒS.Speech.hide();
 
                 //TODO: Sound
                 ƒS.Sound.fade(sound.city, 0, 1);

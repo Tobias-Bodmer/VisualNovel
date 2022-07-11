@@ -1,4 +1,9 @@
 declare namespace Template {
+    export import ƒ = FudgeCore;
+    export import ƒS = FudgeStory;
+    let erzähler: Erzähler;
+}
+declare namespace Template {
     let animations: {};
     function shakeyCamera(): Promise<void>;
 }
@@ -175,11 +180,6 @@ declare namespace Template {
             foreground: string;
         };
     };
-}
-declare namespace Template {
-    export import ƒ = FudgeCore;
-    export import ƒS = FudgeStory;
-    let erzähler: Erzähler;
 }
 declare namespace Template {
     class Erzähler {

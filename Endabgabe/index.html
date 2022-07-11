@@ -9,28 +9,34 @@
   <script src="FudgeStory/FudgeStory.js"></script>
   <script src="./Build/Build.js"></script>
   <title>Genisis Inception</title>
-  <splash src="Images/Splash.png" />
 </head>
 
 <body>
   <scene>
-    <div id="erzähler" class="speech">
+    <div id="erzähler">
       <div id="erzählerName" class="name">
       </div>
       <div id="erzählerContent" class="content">
       </div>
     </div>
 
-    <dialog type="splash" open>
-      <img id="FudgeStoryLogo" theme="light" /> <!-- use "light" or "dark" -->
+    <dialog type="splash"
+      style="top: 50%; transform: translateY(-50%); background-color: #1c1c1c; height: auto; width: 600px; text-align: center; color: beige; border: 3px solid black"
+      open>
       <p>
-        Design your splash screen here. Reposition and rescale the logo above, but do not remove.
+        <img id="FudgeStoryLogo" theme="dark" style="width:85%;" />
+      </p>
+      <p>
+        <img src="Images/Brücke.jpg" style="width:85%;">
+      </p>
+      <p>
+        Genisis Inception
       </p>
     </dialog>
 
     <canvas></canvas>
 
-    <speech class="speech">
+    <speech>
       <name class="name">
       </name>
       <content class="content">
@@ -39,7 +45,7 @@
 
     <dialog type="text-page">
     </dialog>
-    <dialog type="text">
+    <dialog type="text" class="decision">
     </dialog>
     <dialog type="inventory">
       <button type="button">close</button>

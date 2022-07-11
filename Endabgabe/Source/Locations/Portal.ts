@@ -14,7 +14,7 @@ namespace Template {
             D2: "Beobachten."
         };
 
-        let answer = await ƒS.Menu.getInput(decision, "class");
+        let answer = await ƒS.Menu.getInput(decision, "decision");
         switch (answer) {
             case decision.D1:
                 await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0047);
@@ -31,7 +31,7 @@ namespace Template {
                     D2: "Beobachten."
                 };
 
-                let answer = await ƒS.Menu.getInput(decision, "class");
+                let answer = await ƒS.Menu.getInput(decision, "decision");
                 switch (answer) {
                     case decision.D1:
                         await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0047);
@@ -52,7 +52,7 @@ namespace Template {
                             D2: "Beobachten."
                         };
 
-                        let answer = await ƒS.Menu.getInput(decision, "class");
+                        let answer = await ƒS.Menu.getInput(decision, "decision");
                         switch (answer) {
                             case decision.D1:
                                 await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0047);
@@ -74,7 +74,7 @@ namespace Template {
                                     D2: "Schwert ziehen und zuschlagen."
                                 };
 
-                                let answer = await ƒS.Menu.getInput(decision, "class");
+                                let answer = await ƒS.Menu.getInput(decision, "decision");
                                 switch (answer) {
                                     case decision.D1:
 
@@ -111,7 +111,7 @@ namespace Template {
                         break;
                 }
 
-                await ƒS.Speech.clear();
+                await ƒS.Speech.hide();
 
                 //TODO: Sound
                 ƒS.Sound.fade(sound.city, 0, 1);

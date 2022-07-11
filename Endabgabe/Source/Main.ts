@@ -18,6 +18,8 @@ namespace Template {
   function start(_event: Event): void {
     erzähler = new Erzähler();
 
+    ƒS.Speech.hide();
+
     //Menu
     gameMenu = ƒS.Menu.create(inGameMenu, buttonFunctionalities, "gameMenu");
     gameMenu.close();

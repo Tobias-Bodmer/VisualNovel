@@ -5,7 +5,7 @@ namespace Template {
 
         ƒS.Sound.fade(sound.city, 0.2, 4, true);
 
-        await ƒS.update(1);
+        await ƒS.update(4, "./Images/WackingUp.jpg", 1);
 
         await ƒS.Speech.tell(characters.Unknown, characters.Unknown.text.T0000);
 
@@ -26,7 +26,7 @@ namespace Template {
             D2: "Aber ich hab mich ausgeloggt warum bin ich noch hier?"
         };
 
-        let answer = await ƒS.Menu.getInput(decision, "class");
+        let answer = await ƒS.Menu.getInput(decision, "decision");
         switch (answer) {
             case decision.D1:
                 await ƒS.Speech.tell(characters.Protagonist, decision.D1);
@@ -60,7 +60,7 @@ namespace Template {
             D2: "Wie sollte das möglich sein?"
         };
 
-        answer = await ƒS.Menu.getInput(decision, "class");
+        answer = await ƒS.Menu.getInput(decision, "decision");
         switch (answer) {
             case decision.D1:
                 await ƒS.Speech.tell(characters.Protagonist, decision.D1);
@@ -77,7 +77,7 @@ namespace Template {
                     D2: "Nein?"
                 };
 
-                answer = await ƒS.Menu.getInput(decision, "class");
+                answer = await ƒS.Menu.getInput(decision, "decision");
                 switch (answer) {
                     case decision.D1:
                         await ƒS.Speech.tell(characters.Protagonist, decision.D1);
@@ -112,7 +112,7 @@ namespace Template {
         //TODO: give funkgerät 
         await ƒS.Speech.tell(characters.Protagonist, "Hey, Warte, nimm das hier. So können wir in Kontakt bleiben.");
 
-        await ƒS.Speech.clear();
+        await ƒS.Speech.hide();
 
         await ƒS.Text.print("Einige Zeit später...")
 
@@ -123,7 +123,7 @@ namespace Template {
             D2: "Hast du uns etwa belauscht."
         };
 
-        answer = await ƒS.Menu.getInput(decision, "class");
+        answer = await ƒS.Menu.getInput(decision, "decision");
         switch (answer) {
             case decision.D1:
                 await ƒS.Speech.tell(characters.Protagonist, decision.D1);
@@ -149,7 +149,7 @@ namespace Template {
             D2: "Weist du zumindest nach was ich Ausschau halten soll?"
         };
 
-        answer = await ƒS.Menu.getInput(decision, "class");
+        answer = await ƒS.Menu.getInput(decision, "decision");
         switch (answer) {
             case decision.D1:
                 await ƒS.Speech.tell(characters.Protagonist, decision.D1);
@@ -166,7 +166,7 @@ namespace Template {
                 break;
         }
 
-        await ƒS.Speech.clear();
+        await ƒS.Speech.hide();
 
         ƒS.Sound.fade(sound.city, 0, 1);
 

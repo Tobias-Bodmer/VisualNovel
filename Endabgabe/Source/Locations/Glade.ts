@@ -23,7 +23,7 @@ namespace Template {
             D2: "Verstecken."
         };
 
-        let answer = await ƒS.Menu.getInput(decision, "class");
+        let answer = await ƒS.Menu.getInput(decision, "decision");
         switch (answer) {
             case decision.D1:
                 await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0028);
@@ -58,7 +58,7 @@ namespace Template {
 
         await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0033);
 
-        await ƒS.Speech.clear();
+        await ƒS.Speech.hide();
 
         //TODO: Sound
         ƒS.Sound.fade(sound.city, 0, 1);

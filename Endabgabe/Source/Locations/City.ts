@@ -23,7 +23,7 @@ namespace Template {
 
         await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0041);
 
-        await ƒS.Speech.clear();
+        await ƒS.Speech.hide();
 
         ƒS.Sound.fade(sound.city, 0, 1);
 
@@ -48,7 +48,7 @@ namespace Template {
 
         await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0046);
 
-        await ƒS.Speech.clear();
+        await ƒS.Speech.hide();
 
         ƒS.Sound.fade(sound.city, 0, 1);
 
