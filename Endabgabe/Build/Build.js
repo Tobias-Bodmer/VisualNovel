@@ -3,32 +3,77 @@ var Template;
 (function (Template) {
     Template.ƒ = FudgeCore;
     Template.ƒS = FudgeStory;
+    Template.gameStarted = false;
     let gameMenu;
     let inGameMenu = {
+        soundUp: "+",
+        soundDown: "-",
         save: "Save",
         load: "Load",
         close: "Close"
     };
-    let menu = true;
+    let menu = false;
+    let masterSound = 1;
     window.addEventListener("load", start);
     function start(_event) {
         Template.erzähler = new Template.Erzähler();
         Template.ƒS.Speech.hide();
-        //Menu
         gameMenu = Template.ƒS.Menu.create(inGameMenu, buttonFunctionalities, "gameMenu");
         gameMenu.close();
         let scenes = [
-            { scene: Template.introduction, name: "Introduction" },
+            { scene: Template.introduction, name: "Introduction", id: "Introduction" },
+            { scene: Template.forest, name: "Forest", id: "Forest" },
+            { scene: Template.glade, name: "Glade", id: "Glade" },
+            { scene: Template.city1, name: "City1", id: "City1" },
+            { scene: Template.city2, name: "City2", id: "City2" },
+            { scene: Template.portal, name: "Portal", id: "Portal" }
         ];
-        let uiElement = document.querySelector("[type=interface]");
-        // dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
-        Template.dataForSave.state = Template.ƒS.Progress.setData(Template.dataForSave.state, uiElement);
-        // uiElement.setAttribute("value", "50");
         Template.ƒS.Progress.go(scenes);
     }
+    document.addEventListener("keydown", hndKeyPress);
+    async function hndKeyPress(_event) {
+        switch (_event.code) {
+            case Template.ƒ.KEYBOARD_CODE.I:
+                if (Template.gameStarted) {
+                    Template.ƒS.Inventory.open();
+                }
+                break;
+            case Template.ƒ.KEYBOARD_CODE.F8:
+                console.log("Save");
+                await Template.ƒS.Progress.save();
+                break;
+            case Template.ƒ.KEYBOARD_CODE.F9:
+                console.log("Load");
+                await Template.ƒS.Progress.load();
+                break;
+            case Template.ƒ.KEYBOARD_CODE.ESC:
+                if (menu) {
+                    console.log("Close");
+                    gameMenu.close();
+                    menu = false;
+                }
+                else {
+                    console.log("Open");
+                    gameMenu.open();
+                    menu = true;
+                }
+                break;
+        }
+    }
     async function buttonFunctionalities(_option) {
-        console.log(_option);
         switch (_option) {
+            case inGameMenu.soundUp:
+                masterSound += 0.2;
+                if (masterSound > 1)
+                    masterSound = 1;
+                Template.ƒS.Sound.setMasterVolume(masterSound);
+                break;
+            case inGameMenu.soundDown:
+                masterSound -= 0.2;
+                if (masterSound < 0)
+                    masterSound = 0;
+                Template.ƒS.Sound.setMasterVolume(masterSound);
+                break;
             case inGameMenu.save:
                 await Template.ƒS.Progress.save();
                 break;
@@ -39,36 +84,6 @@ var Template;
                 gameMenu.close();
                 menu = false;
                 break;
-            // case inGameMenu.open:
-            //   gameMenu.open();
-            //   menu = true;
-            //   break;
-        }
-        // Shortcuts für's Menü
-        document.addEventListener("keydown", hndKeyPress);
-        async function hndKeyPress(_event) {
-            switch (_event.code) {
-                case Template.ƒ.KEYBOARD_CODE.F8:
-                    console.log("Save");
-                    await Template.ƒS.Progress.save();
-                    break;
-                case Template.ƒ.KEYBOARD_CODE.F9:
-                    console.log("Load");
-                    await Template.ƒS.Progress.load();
-                    break;
-                case Template.ƒ.KEYBOARD_CODE.M:
-                    if (menu) {
-                        console.log("Close");
-                        gameMenu.close();
-                        menu = false;
-                    }
-                    else {
-                        console.log("Open");
-                        gameMenu.open();
-                        menu = true;
-                    }
-                    break;
-            }
         }
     }
 })(Template || (Template = {}));
@@ -217,31 +232,46 @@ var Template;
             name: "Dragon Slayer Sword",
             description: "One of the legendary swords which one weared by the Dragon Slayer.",
             image: "Images/Items/Sword.png",
-            handler: changeform
+            handler: cantBeUsed,
+            static: true
         },
         CrystalBall: {
             name: "Crystal Ball",
             description: "A way to keep in touch with a group or your guild.",
             image: "Images/Items/CrystalBall.png",
-            handler: cantBeUsedNow,
+            handler: cantBeUsed,
+            static: true
         },
         UnknownCrystalBall: {
             name: "The Second Crystal Ball",
             description: "The crystal ball you found in the bushes.",
             image: "Images/Items/CrystalBall.png",
-            handler: cantBeUsedNow,
+            handler: cantBeUsed,
+            static: true
         },
         Book: {
             name: "Book",
             description: "The Book you found in the forest.",
             image: "Images/Items/Book.png",
-            handler: cantBeUsedNow,
+            handler: cantBeUsed,
+            static: true
         }
     };
-    function changeform() {
-    }
-    function cantBeUsedNow() {
-        console.log("This can´t be used right now");
+    function cantBeUsed() {
+        let random = Math.round(Math.random() * 2);
+        switch (random) {
+            case 0:
+                Template.ƒS.Text.print("Maybe later.");
+                break;
+            case 1:
+                Template.ƒS.Text.print("That's not important right now.");
+                break;
+            case 2:
+                Template.ƒS.Text.print("This can't be used right now.");
+                break;
+            default:
+                break;
+        }
     }
 })(Template || (Template = {}));
 var Template;
@@ -318,16 +348,10 @@ var Template;
     Template.sound = {
         //Musik
         city: "Sounds/City.mp3",
-        forest: "Audio/SerenadeOfDarkness.mp3",
-        space: "Audio/Space.mp3",
-        mothrin: "Audio/Afford.mp3",
-        satina: "Audio/Not_As_It Seems.mp3",
-        shubaru: "Audio/Blue_Ska.mp3",
-        scales: "Audio/Lightless_Dawn.mp3",
-        intro: "Audio/Delusion.mp3",
-        ending: "Audio/Daybreak.mp3",
-        crimosa: "Audio/Crimosa.mp3",
-        parkEnding: "Audio/cuddle_love_short1.mp3",
+        forest: "Sounds/Forest.mp3",
+        forestNight: "Sounds/ForestNight.mp3",
+        portal: "Sounds/Portal.mp3",
+        ending: "Sounds/City.mp3",
         //Sound
         click: "",
         creak: "Audio/Effects/creak.wav",
@@ -393,7 +417,7 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0041);
         await Template.ƒS.Speech.hide();
         Template.ƒS.Sound.fade(Template.sound.city, 0, 1);
-        Template.portal();
+        return "Portal";
     }
     Template.city1 = city1;
     async function city2() {
@@ -407,7 +431,7 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0046);
         await Template.ƒS.Speech.hide();
         Template.ƒS.Sound.fade(Template.sound.city, 0, 1);
-        Template.portal();
+        return "Portal";
     }
     Template.city2 = city2;
 })(Template || (Template = {}));
@@ -482,6 +506,7 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0014);
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0015);
         await Template.ƒS.Text.print("Du ziehst ein Buch mit Ledereinband aus dem Loch.");
+        Template.ƒS.Inventory.add(Template.items.Book);
         await Template.ƒS.Text.print("Das Buch trägt das selbe Symbol wie das auf dem Baum.");
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0016);
         await readBook();
@@ -516,27 +541,25 @@ var Template;
         switch (answer) {
             case decision.D1:
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0019);
-                //TODO: Kristallkugel
                 await Template.ƒS.Text.print("Du hast ein Kristallkugel gefunden.");
+                Template.ƒS.Inventory.add(Template.items.UnknownCrystalBall);
                 await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0008);
                 await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0009);
-                let decision2 = {
+                decision = {
                     D1: "Lauschen.",
                     D2: "Antworten."
                 };
                 let answer = await Template.ƒS.Menu.getInput(decision, "decision");
                 switch (answer) {
-                    case decision2.D2:
+                    case decision.D2:
                         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0020);
                         return;
                 }
                 await Template.ƒS.Speech.tell(Template.characters.Unknown, "...");
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0021);
                 await Template.ƒS.Speech.hide();
-                //TODO: Sound
-                Template.ƒS.Sound.fade(Template.sound.city, 0, 1);
-                Template.city1();
-                break;
+                Template.ƒS.Sound.fade(Template.sound.forest, 0, 1);
+                return "City1";
             case decision.D2:
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0022);
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0023);
@@ -545,10 +568,8 @@ var Template;
                 await Template.erzähler.erzählerHide();
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0025);
                 await Template.ƒS.Speech.hide();
-                //TODO: Sound
-                Template.ƒS.Sound.fade(Template.sound.city, 0, 1);
-                Template.glade();
-                return;
+                Template.ƒS.Sound.fade(Template.sound.forest, 0, 1);
+                return "Glade";
         }
     }
     Template.forest = forest;
@@ -558,8 +579,7 @@ var Template;
     async function glade() {
         Template.dataForSave.Glade = true;
         await Template.ƒS.Location.show(Template.locations.waldNacht);
-        //TODO: Sound
-        Template.ƒS.Sound.fade(Template.sound.city, 0.2, 4, true);
+        Template.ƒS.Sound.fade(Template.sound.forestNight, 0.5, 4, true);
         await Template.ƒS.update(1);
         await Template.ƒS.Text.print("Du kommst bei der Lichtung des Buches an.");
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0026);
@@ -590,9 +610,8 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0014);
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0033);
         await Template.ƒS.Speech.hide();
-        //TODO: Sound
-        Template.ƒS.Sound.fade(Template.sound.city, 0, 1);
-        Template.city2();
+        Template.ƒS.Sound.fade(Template.sound.forestNight, 0, 1);
+        return "City2";
     }
     Template.glade = glade;
 })(Template || (Template = {}));
@@ -608,6 +627,9 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0001);
         await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0002);
         Template.dataForSave.Protagonist.name = await Template.ƒS.Speech.getInput();
+        Template.ƒS.Inventory.add(Template.items.Sword);
+        Template.ƒS.Inventory.add(Template.items.CrystalBall);
+        Template.gameStarted = true;
         await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0000);
         let decision = {
             D1: "...",
@@ -665,8 +687,8 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0007);
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0001);
         await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0008);
-        //TODO: give funkgerät 
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, "Hey, Warte, nimm das hier. So können wir in Kontakt bleiben.");
+        await Template.ƒS.Text.print("Du hast eine Kristallkugel abgegeben.");
         await Template.ƒS.Speech.hide();
         await Template.ƒS.Text.print("Einige Zeit später...");
         await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0003);
@@ -704,7 +726,6 @@ var Template;
         }
         await Template.ƒS.Speech.hide();
         Template.ƒS.Sound.fade(Template.sound.city, 0, 1);
-        Template.forest();
     }
     Template.introduction = introduction;
 })(Template || (Template = {}));
@@ -712,8 +733,7 @@ var Template;
 (function (Template) {
     async function portal() {
         await Template.ƒS.Location.show(Template.locations.portal);
-        //TODO: Sound
-        Template.ƒS.Sound.fade(Template.sound.city, 0.5, 4, true);
+        Template.ƒS.Sound.fade(Template.sound.portal, 0.5, 4, true);
         await Template.ƒS.update(1);
         await Template.ƒS.Text.print("Du kommst zum Portal und siehst eine Gruppe dunkler Gestalten am Portal.");
         let decision = {
@@ -767,13 +787,6 @@ var Template;
                                         //TODO: Spieler stirbt Böses Gewinnt für immer gefangen...
                                         break;
                                     case decision.D2:
-                                        await Template.ƒS.Speech.tell(Template.characters.Mass, Template.characters.Mass.text.T0000);
-                                        await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0051);
-                                        await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0052);
-                                        await Template.ƒS.Speech.tell(Template.characters.Antagonist, Template.characters.Antagonist.text.T0000);
-                                        //TODO: Böses Gewinnt für immer gefangen...
-                                        break;
-                                    case decision.D2:
                                         await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0009);
                                         //TODO: Spieler gewinnt....
                                         break;
@@ -783,8 +796,7 @@ var Template;
                         break;
                 }
                 await Template.ƒS.Speech.hide();
-                //TODO: Sound
-                Template.ƒS.Sound.fade(Template.sound.city, 0, 1);
+                Template.ƒS.Sound.fade(Template.sound.portal, 0, 1);
         }
     }
     Template.portal = portal;

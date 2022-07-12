@@ -27,7 +27,7 @@ namespace Template {
 
         ƒS.Sound.fade(sound.city, 0, 1);
 
-        portal();
+        return "Portal";
     }
 
     export async function city2(): ƒS.SceneReturn {
@@ -52,6 +52,6 @@ namespace Template {
 
         ƒS.Sound.fade(sound.city, 0, 1);
 
-        portal();
+        return "Portal";
     }
 }

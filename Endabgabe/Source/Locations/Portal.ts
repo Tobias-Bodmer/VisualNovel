@@ -2,8 +2,7 @@ namespace Template {
     export async function portal(): ƒS.SceneReturn {
         await ƒS.Location.show(locations.portal);
 
-        //TODO: Sound
-        ƒS.Sound.fade(sound.city, 0.5, 4, true);
+        ƒS.Sound.fade(sound.portal, 0.5, 4, true);
 
         await ƒS.update(1);
 
@@ -80,22 +79,7 @@ namespace Template {
 
                                         //TODO: Spieler stirbt Böses Gewinnt für immer gefangen...
 
-
                                         break;
-
-                                    case decision.D2:
-                                        await ƒS.Speech.tell(characters.Mass, characters.Mass.text.T0000);
-
-                                        await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0051);
-
-                                        await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0052);
-
-                                        await ƒS.Speech.tell(characters.Antagonist, characters.Antagonist.text.T0000);
-
-                                        //TODO: Böses Gewinnt für immer gefangen...
-
-                                        break;
-
 
                                     case decision.D2:
                                         await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0009);
@@ -113,8 +97,7 @@ namespace Template {
 
                 await ƒS.Speech.hide();
 
-                //TODO: Sound
-                ƒS.Sound.fade(sound.city, 0, 1);
+                ƒS.Sound.fade(sound.portal, 0, 1);
         }
     }
 }

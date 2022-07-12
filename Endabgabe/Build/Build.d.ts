@@ -2,6 +2,7 @@ declare namespace Template {
     export import ƒ = FudgeCore;
     export import ƒS = FudgeStory;
     let erzähler: Erzähler;
+    let gameStarted: boolean;
 }
 declare namespace Template {
     let animations: {};
@@ -127,29 +128,32 @@ declare namespace Template {
             name: string;
             description: string;
             image: string;
-            handler: typeof changeform;
+            handler: typeof cantBeUsed;
+            static: boolean;
         };
         CrystalBall: {
             name: string;
             description: string;
             image: string;
-            handler: typeof cantBeUsedNow;
+            handler: typeof cantBeUsed;
+            static: boolean;
         };
         UnknownCrystalBall: {
             name: string;
             description: string;
             image: string;
-            handler: typeof cantBeUsedNow;
+            handler: typeof cantBeUsed;
+            static: boolean;
         };
         Book: {
             name: string;
             description: string;
             image: string;
-            handler: typeof cantBeUsedNow;
+            handler: typeof cantBeUsed;
+            static: boolean;
         };
     };
-    function changeform(): void;
-    function cantBeUsedNow(): void;
+    function cantBeUsed(): void;
     export {};
 }
 declare namespace Template {
@@ -207,15 +211,9 @@ declare namespace Template {
     let sound: {
         city: string;
         forest: string;
-        space: string;
-        mothrin: string;
-        satina: string;
-        shubaru: string;
-        scales: string;
-        intro: string;
+        forestNight: string;
+        portal: string;
         ending: string;
-        crimosa: string;
-        parkEnding: string;
         click: string;
         creak: string;
         walking: string;

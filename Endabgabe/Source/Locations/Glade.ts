@@ -5,8 +5,7 @@ namespace Template {
 
         await ƒS.Location.show(locations.waldNacht);
 
-        //TODO: Sound
-        ƒS.Sound.fade(sound.city, 0.2, 4, true);
+        ƒS.Sound.fade(sound.forestNight, 0.5, 4, true);
 
         await ƒS.update(1);
 
@@ -60,9 +59,8 @@ namespace Template {
 
         await ƒS.Speech.hide();
 
-        //TODO: Sound
-        ƒS.Sound.fade(sound.city, 0, 1);
+        ƒS.Sound.fade(sound.forestNight, 0, 1);
 
-        city2();
+        return "City2";
     }
 }

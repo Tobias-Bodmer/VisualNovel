@@ -19,6 +19,11 @@ namespace Template {
 
         dataForSave.Protagonist.name = await ƒS.Speech.getInput();
 
+        ƒS.Inventory.add(items.Sword);
+        ƒS.Inventory.add(items.CrystalBall);
+
+        gameStarted = true;
+
         await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0000);
 
         let decision = {
@@ -109,8 +114,9 @@ namespace Template {
 
         await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0008);
 
-        //TODO: give funkgerät 
         await ƒS.Speech.tell(characters.Protagonist, "Hey, Warte, nimm das hier. So können wir in Kontakt bleiben.");
+
+        await ƒS.Text.print("Du hast eine Kristallkugel abgegeben.")
 
         await ƒS.Speech.hide();
 
@@ -169,7 +175,5 @@ namespace Template {
         await ƒS.Speech.hide();
 
         ƒS.Sound.fade(sound.city, 0, 1);
-
-        forest();
     }
 }

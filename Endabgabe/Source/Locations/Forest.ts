@@ -85,6 +85,8 @@ namespace Template {
 
         await ƒS.Text.print("Du ziehst ein Buch mit Ledereinband aus dem Loch.");
 
+        ƒS.Inventory.add(items.Book);
+
         await ƒS.Text.print("Das Buch trägt das selbe Symbol wie das auf dem Baum.");
 
         await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0016);
@@ -129,14 +131,15 @@ namespace Template {
             case decision.D1:
                 await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0019);
 
-                //TODO: Kristallkugel
                 await ƒS.Text.print("Du hast ein Kristallkugel gefunden.");
+
+                ƒS.Inventory.add(items.UnknownCrystalBall);
 
                 await ƒS.Speech.tell(characters.Unknown, characters.Unknown.text.T0008);
 
                 await ƒS.Speech.tell(characters.Unknown, characters.Unknown.text.T0009);
 
-                let decision2 = {
+                decision = {
                     D1: "Lauschen.",
                     D2: "Antworten."
                 };
@@ -144,7 +147,7 @@ namespace Template {
                 let answer = await ƒS.Menu.getInput(decision, "decision");
 
                 switch (answer) {
-                    case decision2.D2:
+                    case decision.D2:
                         await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0020);
 
                         return;
@@ -154,14 +157,11 @@ namespace Template {
 
                 await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0021);
 
-
                 await ƒS.Speech.hide();
 
-                //TODO: Sound
-                ƒS.Sound.fade(sound.city, 0, 1);
+                ƒS.Sound.fade(sound.forest, 0, 1);
 
-                city1();
-                break;
+                return "City1";
 
             case decision.D2:
                 await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0022);
@@ -176,15 +176,11 @@ namespace Template {
 
                 await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0025);
 
-
                 await ƒS.Speech.hide();
 
-                //TODO: Sound
-                ƒS.Sound.fade(sound.city, 0, 1);
+                ƒS.Sound.fade(sound.forest, 0, 1);
 
-                glade();
-
-                return;
+                return "Glade";
         }
     }
 }
