@@ -17,6 +17,13 @@ html, body {
   user-select: none;
 }
 
+.credits {
+  text-align: center;
+  background-color: rgba(11, 14, 19, 0.9);
+  color: rgb(98, 113, 161);
+  border-radius: 15px;
+}
+
 scene {
   width: 1920px;
   height: 1080px;

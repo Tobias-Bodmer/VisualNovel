@@ -33,7 +33,10 @@ namespace Template {
       { scene: glade, name: "Glade", id: "Glade" },
       { scene: city1, name: "City1", id: "City1" },
       { scene: city2, name: "City2", id: "City2" },
-      { scene: portal, name: "Portal", id: "Portal" }
+      { scene: portal, name: "Portal", id: "Portal" },
+      { scene: goodEnding, name: "GoodEnding", id: "GoodEnding" },
+      { scene: badEnding, name: "BadEnding", id: "BadEnding" },
+      { scene: credits, name: "Credits", id: "Credits" }
     ];
 
     ƒS.Progress.go(scenes);

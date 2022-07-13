@@ -18,9 +18,10 @@ namespace Template {
             case decision.D1:
                 await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0047);
 
-                //TODO: Tod da zu viel gegner.                
+                //TODO: Tod da zu viel gegner.
+                await ƒS.Text.print("Doch es sind zu viele. Du hast keine Chance und fällst, bevor du sie überhaupt erreichst.");
 
-                break;
+                return "BadEnding";
 
             case decision.D2:
                 await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0048);
@@ -35,9 +36,10 @@ namespace Template {
                     case decision.D1:
                         await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0047);
 
-                        //TODO: Tod da zu viel gegner aber jetzt verwirrung anfangs.                
+                        //TODO: Tod da zu viel gegner aber jetzt verwirrung anfangs.
+                        await ƒS.Text.print("Alle sind sichtlich verwirrt von deinem Angriffsgeschrei, doch es sind zu viele und es gelinkt ihnen, dich zu überwältigen.");
 
-                        break;
+                        return "BadEnding";
 
                     case decision.D2:
                         await ƒS.Speech.tell(characters.Unknown, characters.Unknown.text.T0015);
@@ -78,15 +80,23 @@ namespace Template {
                                     case decision.D1:
 
                                         //TODO: Spieler stirbt Böses Gewinnt für immer gefangen...
-
-                                        break;
-
-                                    case decision.D2:
                                         await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0009);
 
-                                        //TODO: Spieler gewinnt....
+                                        await ƒS.Text.print("Es gelingt ihm das Portal zu schließen.");
 
-                                        break;
+                                        return "BadEnding";
+
+                                    case decision.D2:
+
+                                        //TODO: Spieler gewinnt....
+                                        await ƒS.Text.print("Du ziehst dein Schwert und bringst Blackangel zufall.");
+
+                                        await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0010);
+
+                                        await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0057);
+
+                                        return "GoodEnding";
+
                                 }
 
                                 break;

@@ -9,7 +9,7 @@ namespace Template {
 
         portal: "Sounds/Portal.mp3",
 
-        ending: "Sounds/City.mp3",
+        ending: "Sounds/Ending.mp3",
 
         //Sound
         click: "",

@@ -26,7 +26,10 @@ var Template;
             { scene: Template.glade, name: "Glade", id: "Glade" },
             { scene: Template.city1, name: "City1", id: "City1" },
             { scene: Template.city2, name: "City2", id: "City2" },
-            { scene: Template.portal, name: "Portal", id: "Portal" }
+            { scene: Template.portal, name: "Portal", id: "Portal" },
+            { scene: Template.goodEnding, name: "GoodEnding", id: "GoodEnding" },
+            { scene: Template.badEnding, name: "BadEnding", id: "BadEnding" },
+            { scene: Template.credits, name: "Credits", id: "Credits" }
         ];
         Template.ƒS.Progress.go(scenes);
     }
@@ -136,7 +139,8 @@ var Template;
                 T0006: "Vor einigen Wochen hat es eine Hackergruppe wohl geschafft... Also sie haben VR-Headsets zum explodieren gebracht...",
                 T0007: "Was sollen wir denn jetzt tun?",
                 T0008: "Okay ich geh los und versuch mehr herauszufinden.",
-                T0009: "Ahh... Das darf nicht wahr sein...",
+                T0009: "Hahaha ich habs geschafft.",
+                T0010: "Ahh... Das darf nicht wahr sein...",
             }
         },
         Mass: {
@@ -210,7 +214,8 @@ var Template;
                 T0053: "Das muss die Gruppe von der Lichtung sein.",
                 T0054: "Jetzt hab ich dich.",
                 T0055: "Was Blackangel... Aber warum...?",
-                T0056: "Egal damit kommst du nicht durch. Das lass ich nicht zu."
+                T0056: "Egal damit kommst du nicht durch. Das lass ich nicht zu.",
+                T0057: "Egal damit kommst du nicht durch. Das lass ich nicht zu."
             }
             // //Position
             // // origin: ƒS.ORIGIN.BOTTOMRIGHT,
@@ -351,7 +356,7 @@ var Template;
         forest: "Sounds/Forest.mp3",
         forestNight: "Sounds/ForestNight.mp3",
         portal: "Sounds/Portal.mp3",
-        ending: "Sounds/City.mp3",
+        ending: "Sounds/Ending.mp3",
         //Sound
         click: "",
         creak: "Audio/Effects/creak.wav",
@@ -362,42 +367,36 @@ var Template;
 var Template;
 (function (Template) {
     async function goodEnding() {
+        await Template.ƒS.Location.show(Template.locations.black);
+        Template.ƒS.Sound.fade(Template.sound.ending, 0.5, 4, true);
+        Template.ƒS.Speech.hide();
+        await Template.ƒS.update(1);
+        await Template.ƒS.Text.print("Du hast es geschafft, das Böse ist besiegt und die Spieler haben ihre Freiheit zurück.");
+        await Template.ƒS.Text.print("Du hattest keine andere Wahl, als ihn zu töten, um die Spieler zu befreien.");
+        return "Credits";
     }
     Template.goodEnding = goodEnding;
     async function badEnding() {
+        await Template.ƒS.Location.show(Template.locations.black);
+        Template.ƒS.Sound.fade(Template.sound.ending, 0.5, 4, true);
+        Template.ƒS.Speech.hide();
+        await Template.ƒS.update(1);
+        await Template.ƒS.Text.print("Blackangel ist es gelungen, seinen bösen Plan in die Tat umzusetzen.");
+        await Template.ƒS.Text.print("Du hast dein Bestes gegeben.");
+        return "Credits";
     }
     Template.badEnding = badEnding;
     async function credits() {
-        Template.ƒS.Sound.fade(Template.sound.ending, 0.2, 2, true);
-        let pages = "<strong>Credits:</strong><br></br> \
-            <br></br> <strong>Lukas Brausch (me):</strong><br></br> \
-            <br>- Serenade of Darkness (Dark Theme)</br>\
-            <br>- All sprites</br>\
-            <br>- All backgrounds</br>\
-            <br>- Story</br>\
-            <br></br> <strong>Classical Music :</strong><br></br> \
-            <br>- La Crimosa - Mozart: https://imslp.org/wiki/Requiem_in_D_minor%2C_K.626_(Mozart%2C_Wolfgang_Amadeus)</br> \
-            <br>- Air - Bach: https://imslp.org/wiki/Orchestral_Suite_No.3_in_D_major,_BWV_1068_(Bach,_Johann_Sebastian)</br>\
-            <br>- Also Sprach Zarathustra - Strauss: https://imslp.org/wiki/Also_sprach_Zarathustra%2C_Op.30_(Strauss%2C_Richard)</br>\
-            <br></br> <strong>Sound Effects :</strong><br></br> \
-            <br>- Creaking: https://freesound.org/people/Lightnessko/sounds/390323/</br> \
-            <br>- Walking on metal: https://freesound.org/people/NachtmahrTV/sounds/556715/</br> \
-            <br>- Metal clank: https://freesound.org/people/vibe_crc/sounds/59317/</br> \
-            <br></br> <strong>Kevin MacLeod Music :</strong><br></br> \
-            <br>- Not as it seems: https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100762</br> \
-            <br>- Blue Ska: https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1600011</br> \
-            <br>- Lightless Dawn: https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100655</br> \
-            <br></br> <strong>Souichi Sakagami Music :</strong><br></br> \
-            <br>- Afford: https://www.tandess.com/en/music/free-material/material.html </br> \
-            <br>- Delusion: https://www.tandess.com/en/music/free-material/material.html</br> \
-            <br>- Daybreak: https://www.tandess.com/en/music/free-material/material.html</br>\
-            <br>- cuddle_love_short1: https://www.tandess.com/en/music/free-material/material.html</br> \
-            ";
-        await Template.ƒS.Location.show(Template.locations.black);
-        await Template.ƒS.update(1);
-        Template.ƒS.Speech.hide();
-        Template.ƒS.Text.addClass("credits");
-        Template.ƒS.Text.print(pages + "The end");
+        let pages = "<h1>The End</h1> \
+            <h2>Thanks For Playing</h2> \
+            <h3>A Visual Novel Made By Tobias Bodmer</h3> \
+            <p>If You Wanna See Blackangels Way, Play The Visual Novel <br/><br/> Made By Nikola Gorgiev</p> \
+            <h2>Copyrights</h2> \
+            <p>Story: Tobias Bodmer</p> \
+            <p>Backgrounds: Amazon Game Studios New World</p> \
+            <p>Character Visual Design: Nikola Gorgiev</p>";
+        Template.ƒS.Text.setClass("credits");
+        Template.ƒS.Text.print(pages);
     }
     Template.credits = credits;
 })(Template || (Template = {}));
@@ -744,8 +743,9 @@ var Template;
         switch (answer) {
             case decision.D1:
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0047);
-                //TODO: Tod da zu viel gegner.                
-                break;
+                //TODO: Tod da zu viel gegner.
+                await Template.ƒS.Text.print("Doch es sind zu viele. Du hast keine Chance und fällst, bevor du sie überhaupt erreichst.");
+                return "BadEnding";
             case decision.D2:
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0048);
                 decision = {
@@ -756,8 +756,9 @@ var Template;
                 switch (answer) {
                     case decision.D1:
                         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0047);
-                        //TODO: Tod da zu viel gegner aber jetzt verwirrung anfangs.                
-                        break;
+                        //TODO: Tod da zu viel gegner aber jetzt verwirrung anfangs.
+                        await Template.ƒS.Text.print("Alle sind sichtlich verwirrt von deinem Angriffsgeschrei, doch es sind zu viele und es gelinkt ihnen, dich zu überwältigen.");
+                        return "BadEnding";
                     case decision.D2:
                         await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0015);
                         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0049);
@@ -785,11 +786,15 @@ var Template;
                                 switch (answer) {
                                     case decision.D1:
                                         //TODO: Spieler stirbt Böses Gewinnt für immer gefangen...
-                                        break;
-                                    case decision.D2:
                                         await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0009);
+                                        await Template.ƒS.Text.print("Es gelingt ihm das Portal zu schließen.");
+                                        return "BadEnding";
+                                    case decision.D2:
                                         //TODO: Spieler gewinnt....
-                                        break;
+                                        await Template.ƒS.Text.print("Du ziehst dein Schwert und bringst Blackangel zufall.");
+                                        await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0010);
+                                        await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0057);
+                                        return "GoodEnding";
                                 }
                                 break;
                         }

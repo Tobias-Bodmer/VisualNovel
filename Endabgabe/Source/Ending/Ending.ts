@@ -1,41 +1,45 @@
 namespace Template {
-    export async function goodEnding(): ƒS.SceneReturn { 
-        
-    }
-    export async function badEnding(): ƒS.SceneReturn { 
-
-    }
-    export async function credits(): ƒS.SceneReturn { 
-        ƒS.Sound.fade(sound.ending, 0.2, 2, true);
-        let pages: string =
-            "<strong>Credits:</strong><br></br> \
-            <br></br> <strong>Lukas Brausch (me):</strong><br></br> \
-            <br>- Serenade of Darkness (Dark Theme)</br>\
-            <br>- All sprites</br>\
-            <br>- All backgrounds</br>\
-            <br>- Story</br>\
-            <br></br> <strong>Classical Music :</strong><br></br> \
-            <br>- La Crimosa - Mozart: https://imslp.org/wiki/Requiem_in_D_minor%2C_K.626_(Mozart%2C_Wolfgang_Amadeus)</br> \
-            <br>- Air - Bach: https://imslp.org/wiki/Orchestral_Suite_No.3_in_D_major,_BWV_1068_(Bach,_Johann_Sebastian)</br>\
-            <br>- Also Sprach Zarathustra - Strauss: https://imslp.org/wiki/Also_sprach_Zarathustra%2C_Op.30_(Strauss%2C_Richard)</br>\
-            <br></br> <strong>Sound Effects :</strong><br></br> \
-            <br>- Creaking: https://freesound.org/people/Lightnessko/sounds/390323/</br> \
-            <br>- Walking on metal: https://freesound.org/people/NachtmahrTV/sounds/556715/</br> \
-            <br>- Metal clank: https://freesound.org/people/vibe_crc/sounds/59317/</br> \
-            <br></br> <strong>Kevin MacLeod Music :</strong><br></br> \
-            <br>- Not as it seems: https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100762</br> \
-            <br>- Blue Ska: https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1600011</br> \
-            <br>- Lightless Dawn: https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100655</br> \
-            <br></br> <strong>Souichi Sakagami Music :</strong><br></br> \
-            <br>- Afford: https://www.tandess.com/en/music/free-material/material.html </br> \
-            <br>- Delusion: https://www.tandess.com/en/music/free-material/material.html</br> \
-            <br>- Daybreak: https://www.tandess.com/en/music/free-material/material.html</br>\
-            <br>- cuddle_love_short1: https://www.tandess.com/en/music/free-material/material.html</br> \
-            ";
+    export async function goodEnding(): ƒS.SceneReturn {
         await ƒS.Location.show(locations.black);
-        await ƒS.update(1);
+
+        ƒS.Sound.fade(sound.ending, 0.5, 4, true);
+
         ƒS.Speech.hide();
-        ƒS.Text.addClass("credits");
-        ƒS.Text.print(pages + "The end");
+
+        await ƒS.update(1);
+
+        await ƒS.Text.print("Du hast es geschafft, das Böse ist besiegt und die Spieler haben ihre Freiheit zurück.");
+
+        await ƒS.Text.print("Du hattest keine andere Wahl, als ihn zu töten, um die Spieler zu befreien.");
+
+        return "Credits";
+    }
+    export async function badEnding(): ƒS.SceneReturn {
+        await ƒS.Location.show(locations.black);
+
+        ƒS.Sound.fade(sound.ending, 0.5, 4, true);
+
+        ƒS.Speech.hide();
+
+        await ƒS.update(1);
+
+        await ƒS.Text.print("Blackangel ist es gelungen, seinen bösen Plan in die Tat umzusetzen.");
+
+        await ƒS.Text.print("Du hast dein Bestes gegeben.");
+
+        return "Credits";
+    }
+    export async function credits(): ƒS.SceneReturn {
+        let pages: string =
+            "<h1>The End</h1> \
+            <h2>Thanks For Playing</h2> \
+            <h3>A Visual Novel Made By Tobias Bodmer</h3> \
+            <p>If You Wanna See Blackangels Way, Play The Visual Novel <br/><br/> Made By Nikola Gorgiev</p> \
+            <h2>Copyrights</h2> \
+            <p>Story: Tobias Bodmer</p> \
+            <p>Backgrounds: Amazon Game Studios New World</p> \
+            <p>Character Visual Design: Nikola Gorgiev</p>";
+        ƒS.Text.setClass("credits");
+        ƒS.Text.print(pages);
     }
 }

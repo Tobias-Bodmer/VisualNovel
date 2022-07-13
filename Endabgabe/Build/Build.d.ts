@@ -44,6 +44,7 @@ declare namespace Template {
                 T0007: string;
                 T0008: string;
                 T0009: string;
+                T0010: string;
             };
         };
         Mass: {
@@ -118,6 +119,7 @@ declare namespace Template {
                 T0054: string;
                 T0055: string;
                 T0056: string;
+                T0057: string;
             };
         };
     };

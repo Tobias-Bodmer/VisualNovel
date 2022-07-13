@@ -33,7 +33,8 @@ namespace Template {
                 T0006: "Vor einigen Wochen hat es eine Hackergruppe wohl geschafft... Also sie haben VR-Headsets zum explodieren gebracht...",
                 T0007: "Was sollen wir denn jetzt tun?",
                 T0008: "Okay ich geh los und versuch mehr herauszufinden.",
-                T0009: "Ahh... Das darf nicht wahr sein...",
+                T0009: "Hahaha ich habs geschafft.",
+                T0010: "Ahh... Das darf nicht wahr sein...",
             }
         },
         Mass: {
@@ -107,7 +108,8 @@ namespace Template {
                 T0053: "Das muss die Gruppe von der Lichtung sein.",
                 T0054: "Jetzt hab ich dich.",
                 T0055: "Was Blackangel... Aber warum...?",
-                T0056: "Egal damit kommst du nicht durch. Das lass ich nicht zu."
+                T0056: "Egal damit kommst du nicht durch. Das lass ich nicht zu.",
+                T0057: "Egal damit kommst du nicht durch. Das lass ich nicht zu."
             }
             // //Position
             // // origin: ƒS.ORIGIN.BOTTOMRIGHT,
