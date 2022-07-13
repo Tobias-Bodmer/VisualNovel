@@ -12,13 +12,7 @@ namespace Template {
         ending: "Sounds/Ending.mp3",
 
         //Sound
-        click: "",
-
-        creak: "Audio/Effects/creak.wav",
-
-        walking: "Audio/Effects/walking.wav",
-
-        clank: "Audio/Effects/clank.wav"
+        shakeyCamera: "Sounds/ShackyCamera.mp3",
     };
 
 }

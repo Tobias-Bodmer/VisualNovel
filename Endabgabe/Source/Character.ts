@@ -109,7 +109,7 @@ namespace Template {
                 T0054: "Jetzt hab ich dich.",
                 T0055: "Was Blackangel... Aber warum...?",
                 T0056: "Egal damit kommst du nicht durch. Das lass ich nicht zu.",
-                T0057: "Egal damit kommst du nicht durch. Das lass ich nicht zu."
+                T0057: "Warum hast du das getan."
             }
             // //Position
             // // origin: ƒS.ORIGIN.BOTTOMRIGHT,

@@ -10,6 +10,10 @@ namespace Template {
     }
 
     export async function shakeyCamera(): Promise<void> {
-        document.body.animate(shake, timing);
+        await ƒS.Sound.play(sound.shakeyCamera, 0.5, false);
+
+        await setTimeout(() => {
+            document.body.animate(shake, timing);
+        }, 100);
     }
 }

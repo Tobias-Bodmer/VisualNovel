@@ -216,10 +216,7 @@ declare namespace Template {
         forestNight: string;
         portal: string;
         ending: string;
-        click: string;
-        creak: string;
-        walking: string;
-        clank: string;
+        shakeyCamera: string;
     };
 }
 declare namespace Template {

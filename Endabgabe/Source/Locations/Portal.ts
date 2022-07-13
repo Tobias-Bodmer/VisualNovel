@@ -18,8 +18,11 @@ namespace Template {
             case decision.D1:
                 await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0047);
 
-                //TODO: Tod da zu viel gegner.
                 await ƒS.Text.print("Doch es sind zu viele. Du hast keine Chance und fällst, bevor du sie überhaupt erreichst.");
+
+                await ƒS.Speech.hide();
+
+                ƒS.Sound.fade(sound.portal, 0, 1);
 
                 return "BadEnding";
 
@@ -36,8 +39,11 @@ namespace Template {
                     case decision.D1:
                         await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0047);
 
-                        //TODO: Tod da zu viel gegner aber jetzt verwirrung anfangs.
                         await ƒS.Text.print("Alle sind sichtlich verwirrt von deinem Angriffsgeschrei, doch es sind zu viele und es gelinkt ihnen, dich zu überwältigen.");
+
+                        await ƒS.Speech.hide();
+
+                        ƒS.Sound.fade(sound.portal, 0, 1);
 
                         return "BadEnding";
 
@@ -79,35 +85,52 @@ namespace Template {
                                 switch (answer) {
                                     case decision.D1:
 
-                                        //TODO: Spieler stirbt Böses Gewinnt für immer gefangen...
                                         await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0009);
 
                                         await ƒS.Text.print("Es gelingt ihm das Portal zu schließen.");
+
+                                        await ƒS.Speech.hide();
+
+                                        ƒS.Sound.fade(sound.portal, 0, 1);
 
                                         return "BadEnding";
 
                                     case decision.D2:
 
-                                        //TODO: Spieler gewinnt....
                                         await ƒS.Text.print("Du ziehst dein Schwert und bringst Blackangel zufall.");
 
                                         await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0010);
 
                                         await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0057);
 
+                                        await ƒS.Speech.hide();
+
+                                        ƒS.Sound.fade(sound.portal, 0, 1);
+
                                         return "GoodEnding";
 
                                 }
 
                                 break;
+
+                            case decision.D2:
+                                await ƒS.Text.print("Du hörst die Vasallen am Portal schreien.");
+
+                                await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0051);
+
+                                await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0052);
+
+                                await ƒS.Speech.tell(characters.Antagonist, characters.Antagonist.text.T0000);
+
+                                await ƒS.Speech.hide();
+
+                                ƒS.Sound.fade(sound.portal, 0, 1);
+
+                                return "BadEnding";
                         }
 
                         break;
                 }
-
-                await ƒS.Speech.hide();
-
-                ƒS.Sound.fade(sound.portal, 0, 1);
         }
     }
 }
