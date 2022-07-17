@@ -1,5 +1,17 @@
 namespace Template {
     export let characters = {
+        AnotherOne: {
+            name: "Ein anderer",
+            text: {
+                T0000: "Wir müssen sie aufhalten."
+            },
+            origin: ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                normal: "Images/Character/Demon.png",
+                happy: "Images/Character/Demon.png",
+                angry: "Images/Character/Demon.png"
+            }
+        },
         Unknown: {
             name: "???",
             text: {
@@ -19,6 +31,12 @@ namespace Template {
                 T0013: "Es gibt aber eine Gruppe die versucht es zu schließen.",
                 T0014: "Okay wir sind uns einig also dann nichts wie hin zum Portal.",
                 T0015: "Ahhh! Was passiert mit m... mir.",
+            },
+            origin: ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                normal: "Images/Character/Demon.png",
+                happy: "Images/Character/Demon.png",
+                angry: "Images/Character/Demon.png"
             }
         },
         Blackangel: {
@@ -35,6 +53,13 @@ namespace Template {
                 T0008: "Okay ich geh los und versuch mehr herauszufinden.",
                 T0009: "Hahaha ich habs geschafft.",
                 T0010: "Ahh... Das darf nicht wahr sein...",
+            },
+            //Position
+            origin: ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                normal: "Images/Character/Antagonist_Normal.png",
+                black: "Images/Character/Antagonist_Black.png",
+                scared: "Images/Character/Antagonist_Scared.png"
             }
         },
         Mass: {
@@ -110,17 +135,22 @@ namespace Template {
                 T0055: "Was Blackangel... Aber warum...?",
                 T0056: "Egal damit kommst du nicht durch. Das lass ich nicht zu.",
                 T0057: "Warum hast du das getan."
+            },
+            //Position
+            origin: ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                normal: "Images/Character/Demon.png",
+                scared: "Images/Character/Demon.png"
             }
-            // //Position
-            // // origin: ƒS.ORIGIN.BOTTOMRIGHT,
-            // pose: {
-            //     //Standartpose
-            //     normal: "Images/Characters/Protag.png",
-            //     angel: "Images/Characters/Protag_Angel.png",
-            //     happy: "Images/Characters/Protag_Happy.png",
-            //     sad: "Images/Characters/Protag_Sad.png",
-            //     angry: "Images/Characters/Protag_Angry.png"
-            // }
+        },
+        Bush: {
+            name: "",
+            text: {
+            },
+            origin: ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                normal: "Images/Character/Bush.png"
+            }
         },
     };
 }

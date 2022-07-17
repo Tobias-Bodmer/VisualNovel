@@ -97,7 +97,113 @@ var Template;
         { transform: 'translateX(0) translateY(0px)' }, { transform: 'translateX(-20px) translateY(-10px)' }, { transform: 'translateX(20px) translateY(10px)' },
         { transform: 'translateX(10px) translateY(5px)' }, { transform: 'translateX(-10px) translateY(-5px)' }, { transform: 'translateX(0) translateY(0px)' }
     ];
-    Template.animations = {};
+    let ANIMATION;
+    (function (ANIMATION) {
+        ANIMATION[ANIMATION["CENTERFADEIN"] = 0] = "CENTERFADEIN";
+        ANIMATION[ANIMATION["RIGHTFADEIN"] = 1] = "RIGHTFADEIN";
+        ANIMATION[ANIMATION["LEFTFADEIN"] = 2] = "LEFTFADEIN";
+        ANIMATION[ANIMATION["CENTERFADEOUTLEFT"] = 3] = "CENTERFADEOUTLEFT";
+        ANIMATION[ANIMATION["CENTERFADEOUTRIGHT"] = 4] = "CENTERFADEOUTRIGHT";
+        ANIMATION[ANIMATION["RIGHTFADEOUT"] = 5] = "RIGHTFADEOUT";
+        ANIMATION[ANIMATION["LEFTFADEOUT"] = 6] = "LEFTFADEOUT";
+        ANIMATION[ANIMATION["FROMLEFTTORIGHT"] = 7] = "FROMLEFTTORIGHT";
+        ANIMATION[ANIMATION["FROMRIGHTTOLEFT"] = 8] = "FROMRIGHTTOLEFT";
+        ANIMATION[ANIMATION["SCARED"] = 9] = "SCARED";
+        ANIMATION[ANIMATION["UNSCARED"] = 10] = "UNSCARED";
+        ANIMATION[ANIMATION["HIDE"] = 11] = "HIDE";
+        ANIMATION[ANIMATION["UNHIDE"] = 12] = "UNHIDE";
+    })(ANIMATION = Template.ANIMATION || (Template.ANIMATION = {}));
+    function getAnimation(_animation) {
+        switch (_animation) {
+            case ANIMATION.CENTERFADEIN:
+                return {
+                    start: { translation: Template.ƒS.positionPercent(-20, 100) },
+                    end: { translation: Template.ƒS.positionPercent(50, 100) },
+                    duration: 3,
+                    playmode: Template.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+                };
+            case ANIMATION.RIGHTFADEIN:
+                return {
+                    start: { translation: Template.ƒS.positionPercent(120, 100) },
+                    end: { translation: Template.ƒS.positionPercent(80, 100) },
+                    duration: 3,
+                    playmode: Template.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+                };
+            case ANIMATION.LEFTFADEIN:
+                return {
+                    start: { translation: Template.ƒS.positionPercent(-20, 100) },
+                    end: { translation: Template.ƒS.positionPercent(20, 100) },
+                    duration: 3,
+                    playmode: Template.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+                };
+            case ANIMATION.CENTERFADEOUTLEFT:
+                return {
+                    start: { translation: Template.ƒS.positionPercent(50, 100) },
+                    end: { translation: Template.ƒS.positionPercent(-20, 100) },
+                    duration: 3,
+                    playmode: Template.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+                };
+            case ANIMATION.CENTERFADEOUTRIGHT:
+                return {
+                    start: { translation: Template.ƒS.positionPercent(50, 100) },
+                    end: { translation: Template.ƒS.positionPercent(120, 100) },
+                    duration: 3,
+                    playmode: Template.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+                };
+            case ANIMATION.RIGHTFADEOUT:
+                return {
+                    start: { translation: Template.ƒS.positionPercent(80, 100) },
+                    end: { translation: Template.ƒS.positionPercent(120, 100) },
+                    duration: 3,
+                    playmode: Template.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+                };
+            case ANIMATION.LEFTFADEOUT:
+                return {
+                    start: { translation: Template.ƒS.positionPercent(20, 100) },
+                    end: { translation: Template.ƒS.positionPercent(-20, 100) },
+                    duration: 3,
+                    playmode: Template.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+                };
+            case ANIMATION.FROMLEFTTORIGHT:
+                return {
+                    start: { translation: Template.ƒS.positionPercent(20, 100) },
+                    end: { translation: Template.ƒS.positionPercent(80, 100) },
+                    duration: 3,
+                    playmode: Template.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+                };
+            case ANIMATION.FROMRIGHTTOLEFT:
+                return {
+                    start: { translation: Template.ƒS.positionPercent(80, 100) },
+                    end: { translation: Template.ƒS.positionPercent(20, 100) },
+                    duration: 3,
+                    playmode: Template.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+                };
+            case ANIMATION.SCARED:
+                return {
+                    start: { scaling: new Template.ƒS.Position(1, 1) },
+                    end: { scaling: new Template.ƒS.Position(0.97, 0.97) },
+                    duration: 0.5,
+                    playmode: Template.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+                };
+            case ANIMATION.UNSCARED:
+                return {
+                    start: { scaling: new Template.ƒS.Position(0.97, 0.97) },
+                    end: { scaling: new Template.ƒS.Position(1, 1) },
+                    duration: 0.5,
+                    playmode: Template.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+                };
+            case ANIMATION.HIDE:
+                return {
+                    start: { translation: Template.ƒS.positionPercent(20, 100), scaling: new Template.ƒS.Position(1, 1) },
+                    end: { translation: Template.ƒS.positionPercent(80, 100), scaling: new Template.ƒS.Position(0.5, 0.5) },
+                    duration: 1.5,
+                    playmode: Template.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+                };
+            default:
+                return null;
+        }
+    }
+    Template.getAnimation = getAnimation;
     async function shakeyCamera() {
         await Template.ƒS.Sound.play(Template.sound.shakeyCamera, 0.5, false);
         await setTimeout(() => {
@@ -109,6 +215,18 @@ var Template;
 var Template;
 (function (Template) {
     Template.characters = {
+        AnotherOne: {
+            name: "Ein anderer",
+            text: {
+                T0000: "Wir müssen sie aufhalten."
+            },
+            origin: Template.ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                normal: "Images/Character/Demon.png",
+                happy: "Images/Character/Demon.png",
+                angry: "Images/Character/Demon.png"
+            }
+        },
         Unknown: {
             name: "???",
             text: {
@@ -128,6 +246,12 @@ var Template;
                 T0013: "Es gibt aber eine Gruppe die versucht es zu schließen.",
                 T0014: "Okay wir sind uns einig also dann nichts wie hin zum Portal.",
                 T0015: "Ahhh! Was passiert mit m... mir.",
+            },
+            origin: Template.ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                normal: "Images/Character/Demon.png",
+                happy: "Images/Character/Demon.png",
+                angry: "Images/Character/Demon.png"
             }
         },
         Blackangel: {
@@ -144,6 +268,13 @@ var Template;
                 T0008: "Okay ich geh los und versuch mehr herauszufinden.",
                 T0009: "Hahaha ich habs geschafft.",
                 T0010: "Ahh... Das darf nicht wahr sein...",
+            },
+            //Position
+            origin: Template.ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                normal: "Images/Character/Antagonist_Normal.png",
+                black: "Images/Character/Antagonist_Black.png",
+                scared: "Images/Character/Antagonist_Scared.png"
             }
         },
         Mass: {
@@ -219,17 +350,21 @@ var Template;
                 T0055: "Was Blackangel... Aber warum...?",
                 T0056: "Egal damit kommst du nicht durch. Das lass ich nicht zu.",
                 T0057: "Warum hast du das getan."
+            },
+            //Position
+            origin: Template.ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                normal: "Images/Character/Demon.png",
+                scared: "Images/Character/Demon.png"
             }
-            // //Position
-            // // origin: ƒS.ORIGIN.BOTTOMRIGHT,
-            // pose: {
-            //     //Standartpose
-            //     normal: "Images/Characters/Protag.png",
-            //     angel: "Images/Characters/Protag_Angel.png",
-            //     happy: "Images/Characters/Protag_Happy.png",
-            //     sad: "Images/Characters/Protag_Sad.png",
-            //     angry: "Images/Characters/Protag_Angry.png"
-            // }
+        },
+        Bush: {
+            name: "",
+            text: {},
+            origin: Template.ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                normal: "Images/Character/Bush.png"
+            }
         },
     };
 })(Template || (Template = {}));
@@ -406,6 +541,8 @@ var Template;
         await Template.ƒS.Location.show(Template.locations.bruecke);
         Template.ƒS.Sound.fade(Template.sound.city, 0.5, 4, true);
         await Template.ƒS.update(1);
+        await Template.ƒS.Character.show(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.ƒS.positionPercent(-20, 100));
+        await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.CENTERFADEIN));
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0034);
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0035);
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0036);
@@ -415,6 +552,7 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0040);
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0041);
         await Template.ƒS.Speech.hide();
+        await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.CENTERFADEOUTRIGHT));
         Template.ƒS.Sound.fade(Template.sound.city, 0, 1);
         return "Portal";
     }
@@ -423,12 +561,15 @@ var Template;
         await Template.ƒS.Location.show(Template.locations.bruecke);
         Template.ƒS.Sound.fade(Template.sound.city, 0.5, 4, true);
         await Template.ƒS.update(1);
+        await Template.ƒS.Character.show(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.ƒS.positionPercent(-20, 100));
+        await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.CENTERFADEIN));
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0042);
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0043);
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0044);
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0045);
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0046);
         await Template.ƒS.Speech.hide();
+        await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.CENTERFADEOUTRIGHT));
         Template.ƒS.Sound.fade(Template.sound.city, 0, 1);
         return "Portal";
     }
@@ -441,6 +582,7 @@ var Template;
         Template.ƒS.Sound.fade(Template.sound.forest, 0.5, 4, true);
         await Template.ƒS.update(1);
         await Template.ƒS.Text.print("Du kommst zu einem großen Baum der mittem im Wald auf einer Lichtung steht.");
+        await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.LEFTFADEIN));
         await searchTreeOrArea(0);
         async function searchTreeOrArea(_countD1) {
             let decision = {
@@ -466,6 +608,7 @@ var Template;
                     await searchTreeOrArea(_countD1);
                     break;
                 case decision.D2:
+                    await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.FROMLEFTTORIGHT));
                     return;
             }
         }
@@ -531,12 +674,14 @@ var Template;
             }
         }
         Template.shakeyCamera();
+        await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.scared, Template.getAnimation(Template.ANIMATION.SCARED));
         await Template.ƒS.Text.print("Ein Busch ganz in der Nähe bewegt sich.");
         let decision = {
             D1: "Nachschauen.",
             D2: "Ignorieren."
         };
         let answer = await Template.ƒS.Menu.getInput(decision, "decision");
+        await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.UNSCARED));
         switch (answer) {
             case decision.D1:
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0019);
@@ -557,6 +702,7 @@ var Template;
                 await Template.ƒS.Speech.tell(Template.characters.Unknown, "...");
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0021);
                 await Template.ƒS.Speech.hide();
+                await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.RIGHTFADEOUT));
                 Template.ƒS.Sound.fade(Template.sound.forest, 0, 1);
                 return "City1";
             case decision.D2:
@@ -567,6 +713,7 @@ var Template;
                 await Template.erzähler.erzählerHide();
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0025);
                 await Template.ƒS.Speech.hide();
+                await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.RIGHTFADEOUT));
                 Template.ƒS.Sound.fade(Template.sound.forest, 0, 1);
                 return "Glade";
         }
@@ -579,8 +726,10 @@ var Template;
         Template.dataForSave.Glade = true;
         await Template.ƒS.Location.show(Template.locations.waldNacht);
         Template.ƒS.Sound.fade(Template.sound.forestNight, 0.5, 4, true);
+        await Template.ƒS.Character.show(Template.characters.Bush, Template.characters.Bush.pose.normal, Template.ƒS.positionPercent(80, 100));
         await Template.ƒS.update(1);
         await Template.ƒS.Text.print("Du kommst bei der Lichtung des Buches an.");
+        await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.LEFTFADEIN));
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0026);
         await Template.shakeyCamera();
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0027);
@@ -595,20 +744,30 @@ var Template;
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0029);
                 break;
             case decision.D2:
+                await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.HIDE));
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0030);
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0031);
                 break;
         }
         await Template.ƒS.Text.print("Einige Zeit später.");
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0032);
+        if (answer == decision.D1) {
+            await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.HIDE));
+        }
+        await Template.ƒS.Character.animate(Template.characters.Unknown, Template.characters.Unknown.pose.normal, Template.getAnimation(Template.ANIMATION.CENTERFADEIN));
+        await Template.ƒS.Character.animate(Template.characters.AnotherOne, Template.characters.AnotherOne.pose.normal, Template.getAnimation(Template.ANIMATION.LEFTFADEIN));
         await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0010);
         await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0011);
         await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0012);
         await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0013);
-        await Template.ƒS.Speech.tell("Ein anderer", "Wir müssen sie aufhalten.");
+        await Template.ƒS.Speech.tell(Template.characters.AnotherOne.name, Template.characters.AnotherOne.text.T0000);
         await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0014);
+        Template.ƒS.Character.animate(Template.characters.Unknown, Template.characters.Unknown.pose.normal, Template.getAnimation(Template.ANIMATION.CENTERFADEOUTLEFT));
+        await Template.ƒS.Character.animate(Template.characters.AnotherOne, Template.characters.AnotherOne.pose.normal, Template.getAnimation(Template.ANIMATION.LEFTFADEOUT));
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0033);
         await Template.ƒS.Speech.hide();
+        await Template.ƒS.Character.hideAll();
+        await Template.ƒS.update(1);
         Template.ƒS.Sound.fade(Template.sound.forestNight, 0, 1);
         return "City2";
     }
@@ -620,8 +779,12 @@ var Template;
         await Template.ƒS.Location.show(Template.locations.bruecke);
         Template.ƒS.Sound.fade(Template.sound.city, 0.2, 4, true);
         await Template.ƒS.update(4, "./Images/WackingUp.jpg", 1);
-        await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0000);
         Template.ƒS.Sound.fade(Template.sound.city, 0.5, 2, true);
+        await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0000);
+        await Template.ƒS.Character.show(Template.characters.Blackangel, Template.characters.Blackangel.pose.normal, Template.ƒS.positionPercent(80, 100));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.ƒS.positionPercent(20, 100));
+        await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0000);
         await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0001);
         await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0002);
@@ -648,6 +811,10 @@ var Template;
         await Template.shakeyCamera();
         await Template.ƒS.Sound.fade(Template.sound.city, 0.05, 0.5, true);
         await Template.erzähler.erzählerSpeaks("???", "Don't quit the game or you will die!");
+        await Template.ƒS.Character.hide(Template.characters.Blackangel);
+        await Template.ƒS.Character.show(Template.characters.Blackangel, Template.characters.Blackangel.pose.scared, Template.ƒS.positionPercent(80, 100));
+        await Template.ƒS.update();
+        await Template.ƒS.Character.animate(Template.characters.Blackangel, Template.characters.Blackangel.pose.scared, Template.getAnimation(Template.ANIMATION.SCARED));
         await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0003);
         await Template.erzähler.erzählerHide();
         await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0004);
@@ -656,6 +823,10 @@ var Template;
             D2: "Wie sollte das möglich sein?"
         };
         answer = await Template.ƒS.Menu.getInput(decision, "decision");
+        await Template.ƒS.Character.animate(Template.characters.Blackangel, Template.characters.Blackangel.pose.scared, Template.getAnimation(Template.ANIMATION.UNSCARED));
+        await Template.ƒS.Character.hide(Template.characters.Blackangel);
+        await Template.ƒS.Character.show(Template.characters.Blackangel, Template.characters.Blackangel.pose.normal, Template.ƒS.positionPercent(80, 100));
+        await Template.ƒS.update();
         switch (answer) {
             case decision.D1:
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, decision.D1);
@@ -681,15 +852,28 @@ var Template;
         }
         await Template.shakeyCamera();
         await Template.erzähler.erzählerSpeaks("???", "We have manipulated your VR-Headsets.");
+        await Template.ƒS.Character.hide(Template.characters.Blackangel);
+        await Template.ƒS.Character.show(Template.characters.Blackangel, Template.characters.Blackangel.pose.scared, Template.ƒS.positionPercent(80, 100));
+        await Template.ƒS.update();
+        await Template.ƒS.Character.animate(Template.characters.Blackangel, Template.characters.Blackangel.pose.scared, Template.getAnimation(Template.ANIMATION.SCARED));
         await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0003);
         await Template.erzähler.erzählerHide();
+        await Template.ƒS.Character.animate(Template.characters.Blackangel, Template.characters.Blackangel.pose.scared, Template.getAnimation(Template.ANIMATION.UNSCARED));
+        await Template.ƒS.Character.hide(Template.characters.Blackangel);
+        await Template.ƒS.Character.show(Template.characters.Blackangel, Template.characters.Blackangel.pose.normal, Template.ƒS.positionPercent(80, 100));
+        await Template.ƒS.update();
         await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0007);
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0001);
         await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0008);
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, "Hey, Warte, nimm das hier. So können wir in Kontakt bleiben.");
         await Template.ƒS.Text.print("Du hast eine Kristallkugel abgegeben.");
         await Template.ƒS.Speech.hide();
+        await Template.ƒS.Character.hideAll();
+        await Template.ƒS.update(1.5);
         await Template.ƒS.Text.print("Einige Zeit später...");
+        await Template.ƒS.Character.show(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.ƒS.positionPercent(20, 100));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.animate(Template.characters.Unknown, Template.characters.Unknown.pose.normal, Template.getAnimation(Template.ANIMATION.RIGHTFADEIN));
         await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0003);
         decision = {
             D1: "Ja da hast du richtig gehört.",
@@ -723,6 +907,9 @@ var Template;
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0003);
                 break;
         }
+        await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.LEFTFADEOUT));
+        await Template.ƒS.Character.hideAll();
+        await Template.ƒS.update(1);
         await Template.ƒS.Speech.hide();
         Template.ƒS.Sound.fade(Template.sound.city, 0, 1);
     }
@@ -733,8 +920,10 @@ var Template;
     async function portal() {
         await Template.ƒS.Location.show(Template.locations.portal);
         Template.ƒS.Sound.fade(Template.sound.portal, 0.5, 4, true);
+        await Template.ƒS.Character.show(Template.characters.Blackangel, Template.characters.Blackangel.pose.black, Template.ƒS.positionPercent(80, 100));
         await Template.ƒS.update(1);
         await Template.ƒS.Text.print("Du kommst zum Portal und siehst eine Gruppe dunkler Gestalten am Portal.");
+        await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.LEFTFADEIN));
         let decision = {
             D1: "Angriff.",
             D2: "Beobachten."
@@ -745,6 +934,8 @@ var Template;
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0047);
                 await Template.ƒS.Text.print("Doch es sind zu viele. Du hast keine Chance und fällst, bevor du sie überhaupt erreichst.");
                 await Template.ƒS.Speech.hide();
+                await Template.ƒS.Character.hideAll();
+                await Template.ƒS.update(1);
                 Template.ƒS.Sound.fade(Template.sound.portal, 0, 1);
                 return "BadEnding";
             case decision.D2:
@@ -759,6 +950,8 @@ var Template;
                         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0047);
                         await Template.ƒS.Text.print("Alle sind sichtlich verwirrt von deinem Angriffsgeschrei, doch es sind zu viele und es gelinkt ihnen, dich zu überwältigen.");
                         await Template.ƒS.Speech.hide();
+                        await Template.ƒS.Character.hideAll();
+                        await Template.ƒS.update(1);
                         Template.ƒS.Sound.fade(Template.sound.portal, 0, 1);
                         return "BadEnding";
                     case decision.D2:
@@ -790,6 +983,8 @@ var Template;
                                         await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0009);
                                         await Template.ƒS.Text.print("Es gelingt ihm das Portal zu schließen.");
                                         await Template.ƒS.Speech.hide();
+                                        await Template.ƒS.Character.hideAll();
+                                        await Template.ƒS.update(1);
                                         Template.ƒS.Sound.fade(Template.sound.portal, 0, 1);
                                         return "BadEnding";
                                     case decision.D2:
@@ -797,6 +992,8 @@ var Template;
                                         await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0010);
                                         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0057);
                                         await Template.ƒS.Speech.hide();
+                                        await Template.ƒS.Character.hideAll();
+                                        await Template.ƒS.update(1);
                                         Template.ƒS.Sound.fade(Template.sound.portal, 0, 1);
                                         return "GoodEnding";
                                 }
@@ -807,6 +1004,8 @@ var Template;
                                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0052);
                                 await Template.ƒS.Speech.tell(Template.characters.Antagonist, Template.characters.Antagonist.text.T0000);
                                 await Template.ƒS.Speech.hide();
+                                await Template.ƒS.Character.hideAll();
+                                await Template.ƒS.update(1);
                                 Template.ƒS.Sound.fade(Template.sound.portal, 0, 1);
                                 return "BadEnding";
                         }

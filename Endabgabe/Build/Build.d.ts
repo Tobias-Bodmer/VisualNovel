@@ -5,11 +5,71 @@ declare namespace Template {
     let gameStarted: boolean;
 }
 declare namespace Template {
-    let animations: {};
+    enum ANIMATION {
+        CENTERFADEIN = 0,
+        RIGHTFADEIN = 1,
+        LEFTFADEIN = 2,
+        CENTERFADEOUTLEFT = 3,
+        CENTERFADEOUTRIGHT = 4,
+        RIGHTFADEOUT = 5,
+        LEFTFADEOUT = 6,
+        FROMLEFTTORIGHT = 7,
+        FROMRIGHTTOLEFT = 8,
+        SCARED = 9,
+        UNSCARED = 10,
+        HIDE = 11,
+        UNHIDE = 12
+    }
+    function getAnimation(_animation: ANIMATION): {
+        start: {
+            translation: ƒ.Vector2;
+            scaling?: undefined;
+        };
+        end: {
+            translation: ƒ.Vector2;
+            scaling?: undefined;
+        };
+        duration: number;
+        playmode: ƒ.ANIMATION_PLAYMODE;
+    } | {
+        start: {
+            scaling: ƒ.Vector2;
+            translation?: undefined;
+        };
+        end: {
+            scaling: ƒ.Vector2;
+            translation?: undefined;
+        };
+        duration: number;
+        playmode: ƒ.ANIMATION_PLAYMODE;
+    } | {
+        start: {
+            translation: ƒ.Vector2;
+            scaling: ƒ.Vector2;
+        };
+        end: {
+            translation: ƒ.Vector2;
+            scaling: ƒ.Vector2;
+        };
+        duration: number;
+        playmode: ƒ.ANIMATION_PLAYMODE;
+    };
     function shakeyCamera(): Promise<void>;
 }
 declare namespace Template {
     let characters: {
+        AnotherOne: {
+            name: string;
+            text: {
+                T0000: string;
+            };
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                normal: string;
+                happy: string;
+                angry: string;
+            };
+        };
         Unknown: {
             name: string;
             text: {
@@ -30,6 +90,12 @@ declare namespace Template {
                 T0014: string;
                 T0015: string;
             };
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                normal: string;
+                happy: string;
+                angry: string;
+            };
         };
         Blackangel: {
             name: string;
@@ -45,6 +111,12 @@ declare namespace Template {
                 T0008: string;
                 T0009: string;
                 T0010: string;
+            };
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                normal: string;
+                black: string;
+                scared: string;
             };
         };
         Mass: {
@@ -120,6 +192,19 @@ declare namespace Template {
                 T0055: string;
                 T0056: string;
                 T0057: string;
+            };
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                normal: string;
+                scared: string;
+            };
+        };
+        Bush: {
+            name: string;
+            text: {};
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                normal: string;
             };
         };
     };

@@ -7,9 +7,17 @@ namespace Template {
 
         await ƒS.update(4, "./Images/WackingUp.jpg", 1);
 
+        ƒS.Sound.fade(sound.city, 0.5, 2, true);
+
         await ƒS.Speech.tell(characters.Unknown, characters.Unknown.text.T0000);
 
-        ƒS.Sound.fade(sound.city, 0.5, 2, true);
+        await ƒS.Character.show(characters.Blackangel, characters.Blackangel.pose.normal, ƒS.positionPercent(80, 100));
+
+        await ƒS.update(0.5);
+
+        await ƒS.Character.show(characters.Protagonist, characters.Protagonist.pose.normal, ƒS.positionPercent(20, 100));
+
+        await ƒS.update(0.5);
 
         await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0000);
 
@@ -54,6 +62,11 @@ namespace Template {
 
         await erzähler.erzählerSpeaks("???", "Don't quit the game or you will die!");
 
+        await ƒS.Character.hide(characters.Blackangel);
+        await ƒS.Character.show(characters.Blackangel, characters.Blackangel.pose.scared, ƒS.positionPercent(80, 100));
+        await ƒS.update();
+        await ƒS.Character.animate(characters.Blackangel, characters.Blackangel.pose.scared, getAnimation(ANIMATION.SCARED));
+
         await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0003);
 
         await erzähler.erzählerHide();
@@ -66,6 +79,12 @@ namespace Template {
         };
 
         answer = await ƒS.Menu.getInput(decision, "decision");
+
+        await ƒS.Character.animate(characters.Blackangel, characters.Blackangel.pose.scared, getAnimation(ANIMATION.UNSCARED));
+        await ƒS.Character.hide(characters.Blackangel);
+        await ƒS.Character.show(characters.Blackangel, characters.Blackangel.pose.normal, ƒS.positionPercent(80, 100));
+        await ƒS.update();
+
         switch (answer) {
             case decision.D1:
                 await ƒS.Speech.tell(characters.Protagonist, decision.D1);
@@ -104,9 +123,19 @@ namespace Template {
 
         await erzähler.erzählerSpeaks("???", "We have manipulated your VR-Headsets.");
 
+        await ƒS.Character.hide(characters.Blackangel);
+        await ƒS.Character.show(characters.Blackangel, characters.Blackangel.pose.scared, ƒS.positionPercent(80, 100));
+        await ƒS.update();
+        await ƒS.Character.animate(characters.Blackangel, characters.Blackangel.pose.scared, getAnimation(ANIMATION.SCARED));
+
         await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0003);
 
         await erzähler.erzählerHide();
+
+        await ƒS.Character.animate(characters.Blackangel, characters.Blackangel.pose.scared, getAnimation(ANIMATION.UNSCARED));
+        await ƒS.Character.hide(characters.Blackangel);
+        await ƒS.Character.show(characters.Blackangel, characters.Blackangel.pose.normal, ƒS.positionPercent(80, 100));
+        await ƒS.update();
 
         await ƒS.Speech.tell(characters.Blackangel, characters.Blackangel.text.T0007);
 
@@ -120,7 +149,17 @@ namespace Template {
 
         await ƒS.Speech.hide();
 
+        await ƒS.Character.hideAll();
+
+        await ƒS.update(1.5);
+
         await ƒS.Text.print("Einige Zeit später...")
+
+        await ƒS.Character.show(characters.Protagonist, characters.Protagonist.pose.normal, ƒS.positionPercent(20, 100));
+
+        await ƒS.update(0.5);
+
+        await ƒS.Character.animate(characters.Unknown, characters.Unknown.pose.normal, getAnimation(ANIMATION.RIGHTFADEIN));
 
         await ƒS.Speech.tell(characters.Unknown, characters.Unknown.text.T0003);
 
@@ -171,6 +210,12 @@ namespace Template {
 
                 break;
         }
+
+        await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.normal, getAnimation(ANIMATION.LEFTFADEOUT));
+
+        await ƒS.Character.hideAll();
+
+        await ƒS.update(1);
 
         await ƒS.Speech.hide();
 

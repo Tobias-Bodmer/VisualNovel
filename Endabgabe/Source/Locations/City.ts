@@ -7,6 +7,10 @@ namespace Template {
 
         await ƒS.update(1);
 
+        await ƒS.Character.show(characters.Protagonist, characters.Protagonist.pose.normal, ƒS.positionPercent(-20, 100));
+
+        await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.normal, getAnimation(ANIMATION.CENTERFADEIN));
+
         await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0034);
 
         await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0035);
@@ -25,6 +29,8 @@ namespace Template {
 
         await ƒS.Speech.hide();
 
+        await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.normal, getAnimation(ANIMATION.CENTERFADEOUTRIGHT));
+
         ƒS.Sound.fade(sound.city, 0, 1);
 
         return "Portal";
@@ -38,6 +44,10 @@ namespace Template {
 
         await ƒS.update(1);
 
+        await ƒS.Character.show(characters.Protagonist, characters.Protagonist.pose.normal, ƒS.positionPercent(-20, 100));
+
+        await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.normal, getAnimation(ANIMATION.CENTERFADEIN));
+
         await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0042);
 
         await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0043);
@@ -49,6 +59,8 @@ namespace Template {
         await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0046);
 
         await ƒS.Speech.hide();
+
+        await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.normal, getAnimation(ANIMATION.CENTERFADEOUTRIGHT));
 
         ƒS.Sound.fade(sound.city, 0, 1);
 

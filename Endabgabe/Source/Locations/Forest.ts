@@ -9,6 +9,8 @@ namespace Template {
 
         await ƒS.Text.print("Du kommst zu einem großen Baum der mittem im Wald auf einer Lichtung steht.");
 
+        await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.normal, getAnimation(ANIMATION.LEFTFADEIN));
+
         await searchTreeOrArea(0);
 
         async function searchTreeOrArea(_countD1: number) {
@@ -35,6 +37,8 @@ namespace Template {
                     break;
 
                 case decision.D2:
+                    await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.normal, getAnimation(ANIMATION.FROMLEFTTORIGHT));
+
                     return;
             }
         }
@@ -118,6 +122,8 @@ namespace Template {
 
         shakeyCamera();
 
+        await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.scared, getAnimation(ANIMATION.SCARED));
+
         await ƒS.Text.print("Ein Busch ganz in der Nähe bewegt sich.");
 
         let decision = {
@@ -126,6 +132,8 @@ namespace Template {
         };
 
         let answer = await ƒS.Menu.getInput(decision, "decision");
+
+        await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.normal, getAnimation(ANIMATION.UNSCARED));
 
         switch (answer) {
             case decision.D1:
@@ -159,6 +167,8 @@ namespace Template {
 
                 await ƒS.Speech.hide();
 
+                await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.normal, getAnimation(ANIMATION.RIGHTFADEOUT));
+
                 ƒS.Sound.fade(sound.forest, 0, 1);
 
                 return "City1";
@@ -177,6 +187,8 @@ namespace Template {
                 await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0025);
 
                 await ƒS.Speech.hide();
+
+                await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.normal, getAnimation(ANIMATION.RIGHTFADEOUT));
 
                 ƒS.Sound.fade(sound.forest, 0, 1);
 
