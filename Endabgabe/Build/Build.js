@@ -22,7 +22,7 @@ var Template;
         gameMenu.close();
         let scenes = [
             { scene: Template.introduction, name: "Introduction", id: "Introduction" },
-            { scene: Template.forest, name: "Forest", id: "Forest" },
+            { scene: Template.forest, name: "Fosrest", id: "Forest" },
             { scene: Template.glade, name: "Glade", id: "Glade" },
             { scene: Template.city1, name: "City1", id: "City1" },
             { scene: Template.city2, name: "City2", id: "City2" },
@@ -152,7 +152,7 @@ var Template;
                 };
             case ANIMATION.RIGHTFADEOUT:
                 return {
-                    start: { translation: Template.ƒS.positionPercent(80, 100) },
+                    start: { translation: Template.ƒS.positionPercent(50, 100) },
                     end: { translation: Template.ƒS.positionPercent(120, 100) },
                     duration: 3,
                     playmode: Template.ƒS.ANIMATION_PLAYMODE.PLAYONCE
@@ -167,8 +167,8 @@ var Template;
             case ANIMATION.FROMLEFTTORIGHT:
                 return {
                     start: { translation: Template.ƒS.positionPercent(20, 100) },
-                    end: { translation: Template.ƒS.positionPercent(80, 100) },
-                    duration: 3,
+                    end: { translation: Template.ƒS.positionPercent(50, 100) },
+                    duration: 2,
                     playmode: Template.ƒS.ANIMATION_PLAYMODE.PLAYONCE
                 };
             case ANIMATION.FROMRIGHTTOLEFT:
@@ -222,9 +222,7 @@ var Template;
             },
             origin: Template.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                normal: "Images/Character/Demon.png",
-                happy: "Images/Character/Demon.png",
-                angry: "Images/Character/Demon.png"
+                normal: "Images/Character/Mass_Normal.png"
             }
         },
         Unknown: {
@@ -354,8 +352,8 @@ var Template;
             //Position
             origin: Template.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                normal: "Images/Character/Demon.png",
-                scared: "Images/Character/Demon.png"
+                normal: "Images/Character/Protagonist_Normal.png",
+                scared: "Images/Character/Protagonist_Scared.png"
             }
         },
         Bush: {
@@ -674,6 +672,9 @@ var Template;
             }
         }
         Template.shakeyCamera();
+        await Template.ƒS.Character.hide(Template.characters.Protagonist);
+        await Template.ƒS.Character.show(Template.characters.Protagonist, Template.characters.Protagonist.pose.scared, Template.ƒS.positionPercent(50, 100));
+        await Template.ƒS.update();
         await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.scared, Template.getAnimation(Template.ANIMATION.SCARED));
         await Template.ƒS.Text.print("Ein Busch ganz in der Nähe bewegt sich.");
         let decision = {
@@ -681,7 +682,10 @@ var Template;
             D2: "Ignorieren."
         };
         let answer = await Template.ƒS.Menu.getInput(decision, "decision");
-        await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.UNSCARED));
+        await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.scared, Template.getAnimation(Template.ANIMATION.UNSCARED));
+        await Template.ƒS.Character.hide(Template.characters.Protagonist);
+        await Template.ƒS.Character.show(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.ƒS.positionPercent(50, 100));
+        await Template.ƒS.update();
         switch (answer) {
             case decision.D1:
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0019);
@@ -703,6 +707,7 @@ var Template;
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0021);
                 await Template.ƒS.Speech.hide();
                 await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.RIGHTFADEOUT));
+                await Template.ƒS.Character.hideAll();
                 Template.ƒS.Sound.fade(Template.sound.forest, 0, 1);
                 return "City1";
             case decision.D2:
@@ -714,6 +719,7 @@ var Template;
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0025);
                 await Template.ƒS.Speech.hide();
                 await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.RIGHTFADEOUT));
+                await Template.ƒS.Character.hideAll();
                 Template.ƒS.Sound.fade(Template.sound.forest, 0, 1);
                 return "Glade";
         }
@@ -932,6 +938,7 @@ var Template;
         switch (answer) {
             case decision.D1:
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0047);
+                await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.FROMLEFTTORIGHT));
                 await Template.ƒS.Text.print("Doch es sind zu viele. Du hast keine Chance und fällst, bevor du sie überhaupt erreichst.");
                 await Template.ƒS.Speech.hide();
                 await Template.ƒS.Character.hideAll();
@@ -948,6 +955,7 @@ var Template;
                 switch (answer) {
                     case decision.D1:
                         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0047);
+                        await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.FROMLEFTTORIGHT));
                         await Template.ƒS.Text.print("Alle sind sichtlich verwirrt von deinem Angriffsgeschrei, doch es sind zu viele und es gelinkt ihnen, dich zu überwältigen.");
                         await Template.ƒS.Speech.hide();
                         await Template.ƒS.Character.hideAll();
@@ -966,7 +974,9 @@ var Template;
                         switch (answer) {
                             case decision.D1:
                                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0047);
+                                await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.FROMLEFTTORIGHT));
                                 await Template.ƒS.Text.print("Eine Gruppe stürmt aus den Büschen.");
+                                Template.ƒS.Character.animate(Template.characters.AnotherOne, Template.characters.AnotherOne.pose.normal, Template.getAnimation(Template.ANIMATION.LEFTFADEIN));
                                 if (Template.dataForSave.Glade) {
                                     await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0053);
                                 }

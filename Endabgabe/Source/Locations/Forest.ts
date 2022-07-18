@@ -122,6 +122,9 @@ namespace Template {
 
         shakeyCamera();
 
+        await ƒS.Character.hide(characters.Protagonist);
+        await ƒS.Character.show(characters.Protagonist, characters.Protagonist.pose.scared, ƒS.positionPercent(50, 100));
+        await ƒS.update();
         await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.scared, getAnimation(ANIMATION.SCARED));
 
         await ƒS.Text.print("Ein Busch ganz in der Nähe bewegt sich.");
@@ -133,7 +136,10 @@ namespace Template {
 
         let answer = await ƒS.Menu.getInput(decision, "decision");
 
-        await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.normal, getAnimation(ANIMATION.UNSCARED));
+        await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.scared, getAnimation(ANIMATION.UNSCARED));
+        await ƒS.Character.hide(characters.Protagonist);
+        await ƒS.Character.show(characters.Protagonist, characters.Protagonist.pose.normal, ƒS.positionPercent(50, 100));
+        await ƒS.update();
 
         switch (answer) {
             case decision.D1:
@@ -169,6 +175,8 @@ namespace Template {
 
                 await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.normal, getAnimation(ANIMATION.RIGHTFADEOUT));
 
+                await ƒS.Character.hideAll();
+
                 ƒS.Sound.fade(sound.forest, 0, 1);
 
                 return "City1";
@@ -190,9 +198,12 @@ namespace Template {
 
                 await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.normal, getAnimation(ANIMATION.RIGHTFADEOUT));
 
+                await ƒS.Character.hideAll();
+
                 ƒS.Sound.fade(sound.forest, 0, 1);
 
                 return "Glade";
         }
+
     }
 }

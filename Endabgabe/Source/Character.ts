@@ -7,9 +7,7 @@ namespace Template {
             },
             origin: ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                normal: "Images/Character/Demon.png",
-                happy: "Images/Character/Demon.png",
-                angry: "Images/Character/Demon.png"
+                normal: "Images/Character/Mass_Normal.png"
             }
         },
         Unknown: {
@@ -139,8 +137,8 @@ namespace Template {
             //Position
             origin: ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                normal: "Images/Character/Demon.png",
-                scared: "Images/Character/Demon.png"
+                normal: "Images/Character/Protagonist_Normal.png",
+                scared: "Images/Character/Protagonist_Scared.png"
             }
         },
         Bush: {

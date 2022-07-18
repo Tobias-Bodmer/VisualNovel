@@ -22,6 +22,8 @@ namespace Template {
             case decision.D1:
                 await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0047);
 
+                await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.normal, getAnimation(ANIMATION.FROMLEFTTORIGHT));
+
                 await ƒS.Text.print("Doch es sind zu viele. Du hast keine Chance und fällst, bevor du sie überhaupt erreichst.");
 
                 await ƒS.Speech.hide();
@@ -46,6 +48,8 @@ namespace Template {
                 switch (answer) {
                     case decision.D1:
                         await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0047);
+
+                        await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.normal, getAnimation(ANIMATION.FROMLEFTTORIGHT));
 
                         await ƒS.Text.print("Alle sind sichtlich verwirrt von deinem Angriffsgeschrei, doch es sind zu viele und es gelinkt ihnen, dich zu überwältigen.");
 
@@ -76,7 +80,11 @@ namespace Template {
                             case decision.D1:
                                 await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0047);
 
+                                await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.normal, getAnimation(ANIMATION.FROMLEFTTORIGHT));
+
                                 await ƒS.Text.print("Eine Gruppe stürmt aus den Büschen.");
+
+                                ƒS.Character.animate(characters.AnotherOne, characters.AnotherOne.pose.normal, getAnimation(ANIMATION.LEFTFADEIN));
 
                                 if (dataForSave.Glade) {
                                     await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0053);

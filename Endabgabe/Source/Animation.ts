@@ -60,7 +60,7 @@ namespace Template {
                 };
             case ANIMATION.RIGHTFADEOUT:
                 return {
-                    start: { translation: ƒS.positionPercent(80, 100) },
+                    start: { translation: ƒS.positionPercent(50, 100) },
                     end: { translation: ƒS.positionPercent(120, 100) },
                     duration: 3,
                     playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
@@ -75,8 +75,8 @@ namespace Template {
             case ANIMATION.FROMLEFTTORIGHT:
                 return {
                     start: { translation: ƒS.positionPercent(20, 100) },
-                    end: { translation: ƒS.positionPercent(80, 100) },
-                    duration: 3,
+                    end: { translation: ƒS.positionPercent(50, 100) },
+                    duration: 2,
                     playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
                 };
             case ANIMATION.FROMRIGHTTOLEFT:

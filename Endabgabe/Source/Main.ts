@@ -29,7 +29,7 @@ namespace Template {
 
     let scenes: ƒS.Scenes = [
       { scene: introduction, name: "Introduction", id: "Introduction" },
-      { scene: forest, name: "Forest", id: "Forest" },
+      { scene: forest, name: "Fosrest", id: "Forest" },
       { scene: glade, name: "Glade", id: "Glade" },
       { scene: city1, name: "City1", id: "City1" },
       { scene: city2, name: "City2", id: "City2" },
@@ -78,12 +78,12 @@ namespace Template {
       case inGameMenu.soundUp:
         masterSound += 0.2;
         if (masterSound > 1) masterSound = 1;
-        Template.ƒS.Sound.setMasterVolume(masterSound);
+        ƒS.Sound.setMasterVolume(masterSound);
         break;
       case inGameMenu.soundDown:
         masterSound -= 0.2;
         if (masterSound < 0) masterSound = 0;
-        Template.ƒS.Sound.setMasterVolume(masterSound);
+        ƒS.Sound.setMasterVolume(masterSound);
         break;
       case inGameMenu.save:
         await ƒS.Progress.save();
