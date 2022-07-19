@@ -266,7 +266,6 @@ var Template;
                 T0009: "Hahaha ich habs geschafft.",
                 T0010: "Ahh... Das darf nicht wahr sein...",
             },
-            //Position
             origin: Template.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
                 normal: "Images/Character/Antagonist_Normal.png",
@@ -348,7 +347,6 @@ var Template;
                 T0056: "Egal damit kommst du nicht durch. Das lass ich nicht zu.",
                 T0057: "Warum hast du das getan."
             },
-            //Position
             origin: Template.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
                 normal: "Images/Character/Protagonist_Normal.png",
