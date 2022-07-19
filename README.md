@@ -14,10 +14,10 @@ F9: Lädt den Speicherstand
 |    | Titel                            | Genisis Inception |
 |    | Name                             | Tobias Bodmer |
 |    | Matrikelnummer                   | 260528 |
-|  1 | Konzeption                       | Siehe [Konzept](). |
-|  2 | Charakter-Konzept                | Siehe [Konzept]().|  
+|  1 | Konzeption                       | Siehe [Konzept](https://github.com/Tobias-Bodmer/VisualNovel/blob/main/Konzept.pdf). |
+|  2 | Charakter-Konzept                | Siehe [Konzept](https://github.com/Tobias-Bodmer/VisualNovel/blob/main/Konzept.pdf).|  
 |  3 | Auswahlmöglichkeiten             | In fast jeder Szene sind Auswahlmöglichkeiten gegeben. |
-|  4 | Branching paths                  | Siehe [Konzept](). |
+|  4 | Branching paths                  | Siehe [Konzept](https://github.com/Tobias-Bodmer/VisualNovel/blob/main/Konzept.pdf). |
 |  5 | Transitions                      | Aufwach Transitions am Anfang des Spiels. |
 |  6 | Novel-Pages                      | Werden bei den Credits eingesetzt. |
 |  7 | Audio                            | Jede Szene hat Ambience Sound und es gibt auch Soundeffekte. |
@@ -32,6 +32,6 @@ F9: Lädt den Speicherstand
 ## Links
 ### [Play now!](https://tobias-bodmer.github.io/VisualNovel/Endabgabe/)
 
-### [Concept]()
+### [Concept](https://github.com/Tobias-Bodmer/VisualNovel/blob/main/Konzept.pdf)
 
-### [Source code]()
+### [Source code](https://github.com/Tobias-Bodmer/VisualNovel/tree/main/Endabgabe/Source)
