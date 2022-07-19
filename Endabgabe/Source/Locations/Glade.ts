@@ -19,6 +19,11 @@ namespace Template {
 
         await shakeyCamera();
 
+        await ƒS.Character.hide(characters.Protagonist);
+        await ƒS.Character.show(characters.Protagonist, characters.Protagonist.pose.scared, ƒS.positionPercent(20, 100));
+        await ƒS.update();
+        await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.scared, getAnimation(ANIMATION.SCARED));
+
         await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0027);
 
         let decision = {
@@ -33,9 +38,21 @@ namespace Template {
 
                 await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0029);
 
+                await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.scared, getAnimation(ANIMATION.UNSCARED));
+                await ƒS.Character.hide(characters.Protagonist);
+                await ƒS.Character.show(characters.Protagonist, characters.Protagonist.pose.normal, ƒS.positionPercent(20, 100));
+                await ƒS.update();
+
+                await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.normal, getAnimation(ANIMATION.HIDE));
+
                 break;
 
             case decision.D2:
+                await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.scared, getAnimation(ANIMATION.UNSCARED));
+                await ƒS.Character.hide(characters.Protagonist);
+                await ƒS.Character.show(characters.Protagonist, characters.Protagonist.pose.normal, ƒS.positionPercent(20, 100));
+                await ƒS.update();
+
                 await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.normal, getAnimation(ANIMATION.HIDE));
 
                 await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0030);
@@ -49,11 +66,7 @@ namespace Template {
 
         await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0032);
 
-        if (answer == decision.D1) {
-            await ƒS.Character.animate(characters.Protagonist, characters.Protagonist.pose.normal, getAnimation(ANIMATION.HIDE));
-        }
-
-        await ƒS.Character.animate(characters.Unknown, characters.Unknown.pose.normal, getAnimation(ANIMATION.CENTERFADEIN));
+        await ƒS.Character.animate(characters.Unknown, characters.Unknown.pose.black, getAnimation(ANIMATION.CENTERFADEIN));
 
         await ƒS.Character.animate(characters.AnotherOne, characters.AnotherOne.pose.normal, getAnimation(ANIMATION.LEFTFADEIN));
 
@@ -69,7 +82,7 @@ namespace Template {
 
         await ƒS.Speech.tell(characters.Unknown, characters.Unknown.text.T0014);
 
-        ƒS.Character.animate(characters.Unknown, characters.Unknown.pose.normal, getAnimation(ANIMATION.CENTERFADEOUTLEFT));
+        ƒS.Character.animate(characters.Unknown, characters.Unknown.pose.black, getAnimation(ANIMATION.CENTERFADEOUTLEFT));
 
         await ƒS.Character.animate(characters.AnotherOne, characters.AnotherOne.pose.normal, getAnimation(ANIMATION.LEFTFADEOUT));
 

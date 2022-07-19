@@ -247,9 +247,8 @@ var Template;
             },
             origin: Template.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                normal: "Images/Character/Demon.png",
-                happy: "Images/Character/Demon.png",
-                angry: "Images/Character/Demon.png"
+                normal: "Images/Character/Unknown_Normal.png",
+                black: "Images/Character/Unknown_Black.png"
             }
         },
         Blackangel: {
@@ -324,7 +323,7 @@ var Template;
                 T0031: "Ich bleibe besser in meinem Versteck vielleicht kommen sie ja gleich.",
                 T0032: "Da kommt jemand.",
                 T0033: "Ich sollte Blackangel suchen und mit ihm zum Portal wir können bestimmt jede Hilfe gebrauchen.",
-                T0034: "Wer war das nur an dem Funkgerät...",
+                T0034: "Wer war das nur an der Kristallkugel...",
                 T0035: "Was sollte denn am alten Portal sein",
                 T0036: "Und wen könnte er mit Black gemeint haben...",
                 T0037: "Blackangel kann damit nicht gemeint sein er war doch selbst so überrascht.",
@@ -738,6 +737,10 @@ var Template;
         await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.LEFTFADEIN));
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0026);
         await Template.shakeyCamera();
+        await Template.ƒS.Character.hide(Template.characters.Protagonist);
+        await Template.ƒS.Character.show(Template.characters.Protagonist, Template.characters.Protagonist.pose.scared, Template.ƒS.positionPercent(20, 100));
+        await Template.ƒS.update();
+        await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.scared, Template.getAnimation(Template.ANIMATION.SCARED));
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0027);
         let decision = {
             D1: "Abwarten.",
@@ -748,8 +751,17 @@ var Template;
             case decision.D1:
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0028);
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0029);
+                await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.scared, Template.getAnimation(Template.ANIMATION.UNSCARED));
+                await Template.ƒS.Character.hide(Template.characters.Protagonist);
+                await Template.ƒS.Character.show(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.ƒS.positionPercent(20, 100));
+                await Template.ƒS.update();
+                await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.HIDE));
                 break;
             case decision.D2:
+                await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.scared, Template.getAnimation(Template.ANIMATION.UNSCARED));
+                await Template.ƒS.Character.hide(Template.characters.Protagonist);
+                await Template.ƒS.Character.show(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.ƒS.positionPercent(20, 100));
+                await Template.ƒS.update();
                 await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.HIDE));
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0030);
                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0031);
@@ -757,10 +769,7 @@ var Template;
         }
         await Template.ƒS.Text.print("Einige Zeit später.");
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0032);
-        if (answer == decision.D1) {
-            await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.HIDE));
-        }
-        await Template.ƒS.Character.animate(Template.characters.Unknown, Template.characters.Unknown.pose.normal, Template.getAnimation(Template.ANIMATION.CENTERFADEIN));
+        await Template.ƒS.Character.animate(Template.characters.Unknown, Template.characters.Unknown.pose.black, Template.getAnimation(Template.ANIMATION.CENTERFADEIN));
         await Template.ƒS.Character.animate(Template.characters.AnotherOne, Template.characters.AnotherOne.pose.normal, Template.getAnimation(Template.ANIMATION.LEFTFADEIN));
         await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0010);
         await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0011);
@@ -768,7 +777,7 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0013);
         await Template.ƒS.Speech.tell(Template.characters.AnotherOne.name, Template.characters.AnotherOne.text.T0000);
         await Template.ƒS.Speech.tell(Template.characters.Unknown, Template.characters.Unknown.text.T0014);
-        Template.ƒS.Character.animate(Template.characters.Unknown, Template.characters.Unknown.pose.normal, Template.getAnimation(Template.ANIMATION.CENTERFADEOUTLEFT));
+        Template.ƒS.Character.animate(Template.characters.Unknown, Template.characters.Unknown.pose.black, Template.getAnimation(Template.ANIMATION.CENTERFADEOUTLEFT));
         await Template.ƒS.Character.animate(Template.characters.AnotherOne, Template.characters.AnotherOne.pose.normal, Template.getAnimation(Template.ANIMATION.LEFTFADEOUT));
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0033);
         await Template.ƒS.Speech.hide();
@@ -982,6 +991,9 @@ var Template;
                                 }
                                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0054);
                                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0055);
+                                await Template.ƒS.Character.hide(Template.characters.Blackangel);
+                                await Template.ƒS.Character.show(Template.characters.Blackangel, Template.characters.Blackangel.pose.normal, Template.ƒS.positionPercent(80, 100));
+                                await Template.ƒS.update();
                                 await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0056);
                                 decision = {
                                     D1: "Abwarten.",

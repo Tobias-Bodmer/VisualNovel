@@ -94,6 +94,10 @@ namespace Template {
 
                                 await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0055);
 
+                                await ƒS.Character.hide(characters.Blackangel);
+                                await ƒS.Character.show(characters.Blackangel, characters.Blackangel.pose.normal, ƒS.positionPercent(80, 100));
+                                await ƒS.update();
+
                                 await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0056);
 
                                 decision = {

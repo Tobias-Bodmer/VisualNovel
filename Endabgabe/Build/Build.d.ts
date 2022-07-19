@@ -91,8 +91,7 @@ declare namespace Template {
             origin: ƒ.ORIGIN2D;
             pose: {
                 normal: string;
-                happy: string;
-                angry: string;
+                black: string;
             };
         };
         Blackangel: {

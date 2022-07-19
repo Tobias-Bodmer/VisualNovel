@@ -32,9 +32,8 @@ namespace Template {
             },
             origin: ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                normal: "Images/Character/Demon.png",
-                happy: "Images/Character/Demon.png",
-                angry: "Images/Character/Demon.png"
+                normal: "Images/Character/Unknown_Normal.png",
+                black: "Images/Character/Unknown_Black.png"
             }
         },
         Blackangel: {
@@ -109,7 +108,7 @@ namespace Template {
                 T0031: "Ich bleibe besser in meinem Versteck vielleicht kommen sie ja gleich.",
                 T0032: "Da kommt jemand.",
                 T0033: "Ich sollte Blackangel suchen und mit ihm zum Portal wir können bestimmt jede Hilfe gebrauchen.",
-                T0034: "Wer war das nur an dem Funkgerät...",
+                T0034: "Wer war das nur an der Kristallkugel...",
                 T0035: "Was sollte denn am alten Portal sein",
                 T0036: "Und wen könnte er mit Black gemeint haben...",
                 T0037: "Blackangel kann damit nicht gemeint sein er war doch selbst so überrascht.",
