@@ -18,7 +18,7 @@ namespace Template {
                 T0002: "Ich bin Blackangel wie heißt du?",
                 T0003: "Psst... Hey ich hab mitbekommen das ihr etwas gegen unsere Situation machen wollt.",
                 T0004: "Ähm... also nein bzw. nicht so ganz.",
-                T0005: "Das ist sehr gut zu hören. Ich habe ebenfalls mitbekommen das andere Leute hinweise im Wald am großen Baum gefunden haben.",
+                T0005: "Das ist sehr gut zu hören. Ich habe ebenfalls mitbekommen das andere Leute Hinweise im Wald am großen Baum gefunden haben.",
                 T0006: "Das weiß ich leider auch nicht so genau.",
                 T0007: "Ach ja mir fällt gerade ein das einer von ihnen einen großen Baum erwähnt hat.",
                 T0008: "Hey...? Bist du da...?",
@@ -75,7 +75,7 @@ namespace Template {
             text: {
                 T0000: "Wo sind wir?",
                 T0001: "Wir müssen herausfinden ob jemand etwas weiß.",
-                T0002: "Was für hinweise?",
+                T0002: "Was für Hinweise?",
                 T0003: "Naja gut, dann mach ich mich mal auf den Weg, danke.",
                 T0004: "Ich kann nichts Auffälliges sehen.",
                 T0005: "Hier ist nichts.",
