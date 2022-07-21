@@ -18,16 +18,16 @@ F9: Lädt den Speicherstand
 |  2 | Charakter-Konzept                | Siehe [Konzept](https://github.com/Tobias-Bodmer/VisualNovel/blob/main/Konzept.pdf).|  
 |  3 | Auswahlmöglichkeiten             | In fast jeder Szene sind Auswahlmöglichkeiten gegeben. |
 |  4 | Branching paths                  | Siehe [Konzept](https://github.com/Tobias-Bodmer/VisualNovel/blob/main/Konzept.pdf). |
-|  5 | Transitions                      | Aufwach Transitions am Anfang des Spiels. |
+|  5 | Transitions                      | Aufwach Transitions am Anfang des Spiels und bei der Lichtung. |
 |  6 | Novel-Pages                      | Werden bei den Credits eingesetzt. |
 |  7 | Audio                            | Jede Szene hat Ambience Sound und es gibt auch Soundeffekte. |
-|  8 | GUI                              | Ingame-Menü. |
-|  9 | Input-Feld(er)                   | Input Feld für den Namen. |
+|  8 | GUI                              | Ingame-Menü und Inventar. |
+|  9 | Input-Feld(er)                   | Input Feld für den Namen des Spielers. |
 |  10 | Punkteverteilungssystem         | - |
 |  11 | Inventory- und Item-System      | Inventar ist vorhanden. |
-| 12 | Animation                        | Es gibt die Shaky Camera und Charaktere besitzen auch Animationen. |
+| 12 | Animation                        | Es gibt die Shaky Camera und Charaktere Animationen. |
 | 13 | Styling                          | Alle Anzeigen sind mit CSS gestaltet. |
-| 14 | Enden                            | Es gibt drei, wovon zwei Bad Endings sind und eins ein Good Ending.                                                                             
+| 14 | Enden                            | Es gibt drei, wovon zwei Bad Endings und eins ein Good Ending sind.                                                                             
 
 ## Links
 ### [Play now!](https://tobias-bodmer.github.io/VisualNovel/Endabgabe/)

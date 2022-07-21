@@ -1,9 +1,9 @@
 namespace Template {
     export async function forest(): ƒS.SceneReturn {
 
-        await ƒS.Location.show(locations.wald);
-
         ƒS.Sound.fade(sound.forest, 0.5, 4, true);
+        
+        await ƒS.Location.show(locations.wald);
 
         await ƒS.update(1);
 
@@ -120,7 +120,8 @@ namespace Template {
             }
         }
 
-        shakeyCamera();
+        ƒS.Sound.fade(sound.bush, 0.5, 0, false);
+        shakyCamera();
 
         await ƒS.Character.hide(characters.Protagonist);
         await ƒS.Character.show(characters.Protagonist, characters.Protagonist.pose.scared, ƒS.positionPercent(50, 100));

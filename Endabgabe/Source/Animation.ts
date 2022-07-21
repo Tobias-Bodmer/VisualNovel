@@ -113,8 +113,8 @@ namespace Template {
     }
 
 
-    export async function shakeyCamera(): Promise<void> {
-        await ƒS.Sound.play(sound.shakeyCamera, 0.5, false);
+    export async function shakyCamera(): Promise<void> {
+        await ƒS.Sound.play(sound.shakyCamera, 0.5, false);
 
         await setTimeout(() => {
             document.body.animate(shake, timing);

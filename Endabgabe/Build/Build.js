@@ -21,8 +21,8 @@ var Template;
         gameMenu = Template.ƒS.Menu.create(inGameMenu, buttonFunctionalities, "gameMenu");
         gameMenu.close();
         let scenes = [
-            { scene: Template.introduction, name: "Introduction", id: "Introduction" },
-            { scene: Template.forest, name: "Fosrest", id: "Forest" },
+            // { scene: introduction, name: "Introduction", id: "Introduction" },
+            // { scene: forest, name: "Fosrest", id: "Forest" },
             { scene: Template.glade, name: "Glade", id: "Glade" },
             { scene: Template.city1, name: "City1", id: "City1" },
             { scene: Template.city2, name: "City2", id: "City2" },
@@ -204,13 +204,13 @@ var Template;
         }
     }
     Template.getAnimation = getAnimation;
-    async function shakeyCamera() {
-        await Template.ƒS.Sound.play(Template.sound.shakeyCamera, 0.5, false);
+    async function shakyCamera() {
+        await Template.ƒS.Sound.play(Template.sound.shakyCamera, 0.5, false);
         await setTimeout(() => {
             document.body.animate(shake, timing);
         }, 100);
     }
-    Template.shakeyCamera = shakeyCamera;
+    Template.shakyCamera = shakyCamera;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -491,14 +491,15 @@ var Template;
         portal: "Sounds/Portal.mp3",
         ending: "Sounds/Ending.mp3",
         //Sound
-        shakeyCamera: "Sounds/ShackyCamera.mp3",
+        shakyCamera: "Sounds/ShackyCamera.mp3",
+        bush: "Sounds/Bush.mp3"
     };
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
     async function goodEnding() {
-        await Template.ƒS.Location.show(Template.locations.black);
         Template.ƒS.Sound.fade(Template.sound.ending, 0.5, 4, true);
+        await Template.ƒS.Location.show(Template.locations.black);
         Template.ƒS.Speech.hide();
         await Template.ƒS.update(1);
         await Template.ƒS.Text.print("Du hast es geschafft, das Böse ist besiegt und die Spieler haben ihre Freiheit zurück.");
@@ -507,8 +508,8 @@ var Template;
     }
     Template.goodEnding = goodEnding;
     async function badEnding() {
-        await Template.ƒS.Location.show(Template.locations.black);
         Template.ƒS.Sound.fade(Template.sound.ending, 0.5, 4, true);
+        await Template.ƒS.Location.show(Template.locations.black);
         Template.ƒS.Speech.hide();
         await Template.ƒS.update(1);
         await Template.ƒS.Text.print("Blackangel ist es gelungen, seinen bösen Plan in die Tat umzusetzen.");
@@ -533,8 +534,8 @@ var Template;
 var Template;
 (function (Template) {
     async function city1() {
-        await Template.ƒS.Location.show(Template.locations.bruecke);
         Template.ƒS.Sound.fade(Template.sound.city, 0.5, 4, true);
+        await Template.ƒS.Location.show(Template.locations.bruecke);
         await Template.ƒS.update(1);
         await Template.ƒS.Character.show(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.ƒS.positionPercent(-20, 100));
         await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.CENTERFADEIN));
@@ -553,8 +554,8 @@ var Template;
     }
     Template.city1 = city1;
     async function city2() {
-        await Template.ƒS.Location.show(Template.locations.bruecke);
         Template.ƒS.Sound.fade(Template.sound.city, 0.5, 4, true);
+        await Template.ƒS.Location.show(Template.locations.bruecke);
         await Template.ƒS.update(1);
         await Template.ƒS.Character.show(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.ƒS.positionPercent(-20, 100));
         await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.CENTERFADEIN));
@@ -573,8 +574,8 @@ var Template;
 var Template;
 (function (Template) {
     async function forest() {
-        await Template.ƒS.Location.show(Template.locations.wald);
         Template.ƒS.Sound.fade(Template.sound.forest, 0.5, 4, true);
+        await Template.ƒS.Location.show(Template.locations.wald);
         await Template.ƒS.update(1);
         await Template.ƒS.Text.print("Du kommst zu einem großen Baum der mittem im Wald auf einer Lichtung steht.");
         await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.LEFTFADEIN));
@@ -668,7 +669,8 @@ var Template;
                     return;
             }
         }
-        Template.shakeyCamera();
+        Template.ƒS.Sound.fade(Template.sound.bush, 0.5, 0, false);
+        Template.shakyCamera();
         await Template.ƒS.Character.hide(Template.characters.Protagonist);
         await Template.ƒS.Character.show(Template.characters.Protagonist, Template.characters.Protagonist.pose.scared, Template.ƒS.positionPercent(50, 100));
         await Template.ƒS.update();
@@ -727,14 +729,16 @@ var Template;
 (function (Template) {
     async function glade() {
         Template.dataForSave.Glade = true;
-        await Template.ƒS.Location.show(Template.locations.waldNacht);
         Template.ƒS.Sound.fade(Template.sound.forestNight, 0.5, 4, true);
+        await Template.ƒS.Location.show(Template.locations.waldNacht);
+        await Template.ƒS.update(2, "./Images/wet.jpg", 1);
         await Template.ƒS.Character.show(Template.characters.Bush, Template.characters.Bush.pose.normal, Template.ƒS.positionPercent(80, 100));
-        await Template.ƒS.update(1);
+        await Template.ƒS.update();
         await Template.ƒS.Text.print("Du kommst bei der Lichtung des Buches an.");
         await Template.ƒS.Character.animate(Template.characters.Protagonist, Template.characters.Protagonist.pose.normal, Template.getAnimation(Template.ANIMATION.LEFTFADEIN));
         await Template.ƒS.Speech.tell(Template.characters.Protagonist, Template.characters.Protagonist.text.T0026);
-        await Template.shakeyCamera();
+        Template.ƒS.Sound.fade(Template.sound.bush, 0.5, 0, false);
+        await Template.shakyCamera();
         await Template.ƒS.Character.hide(Template.characters.Protagonist);
         await Template.ƒS.Character.show(Template.characters.Protagonist, Template.characters.Protagonist.pose.scared, Template.ƒS.positionPercent(20, 100));
         await Template.ƒS.update();
@@ -821,7 +825,7 @@ var Template;
                 await Template.ƒS.Speech.tell(Template.characters.Blackangel, Template.characters.Blackangel.text.T0002);
                 break;
         }
-        await Template.shakeyCamera();
+        await Template.shakyCamera();
         await Template.ƒS.Sound.fade(Template.sound.city, 0.05, 0.5, true);
         await Template.erzähler.erzählerSpeaks("???", "Don't quit the game or you will die!");
         await Template.ƒS.Character.hide(Template.characters.Blackangel);
@@ -863,7 +867,7 @@ var Template;
                 }
                 break;
         }
-        await Template.shakeyCamera();
+        await Template.shakyCamera();
         await Template.erzähler.erzählerSpeaks("???", "We have manipulated your VR-Headsets.");
         await Template.ƒS.Character.hide(Template.characters.Blackangel);
         await Template.ƒS.Character.show(Template.characters.Blackangel, Template.characters.Blackangel.pose.scared, Template.ƒS.positionPercent(80, 100));
@@ -931,8 +935,8 @@ var Template;
 var Template;
 (function (Template) {
     async function portal() {
-        await Template.ƒS.Location.show(Template.locations.portal);
         Template.ƒS.Sound.fade(Template.sound.portal, 0.5, 4, true);
+        await Template.ƒS.Location.show(Template.locations.portal);
         await Template.ƒS.Character.show(Template.characters.Blackangel, Template.characters.Blackangel.pose.black, Template.ƒS.positionPercent(80, 100));
         await Template.ƒS.update(1);
         await Template.ƒS.Text.print("Du kommst zum Portal und siehst eine Gruppe dunkler Gestalten am Portal.");

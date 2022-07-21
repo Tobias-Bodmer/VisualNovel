@@ -1,8 +1,8 @@
 namespace Template {
     export async function goodEnding(): ƒS.SceneReturn {
-        await ƒS.Location.show(locations.black);
-
         ƒS.Sound.fade(sound.ending, 0.5, 4, true);
+
+        await ƒS.Location.show(locations.black);
 
         ƒS.Speech.hide();
 
@@ -15,9 +15,9 @@ namespace Template {
         return "Credits";
     }
     export async function badEnding(): ƒS.SceneReturn {
-        await ƒS.Location.show(locations.black);
-
         ƒS.Sound.fade(sound.ending, 0.5, 4, true);
+
+        await ƒS.Location.show(locations.black);
 
         ƒS.Speech.hide();
 

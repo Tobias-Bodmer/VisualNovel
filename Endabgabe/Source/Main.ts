@@ -28,8 +28,8 @@ namespace Template {
     gameMenu.close();
 
     let scenes: ƒS.Scenes = [
-      { scene: introduction, name: "Introduction", id: "Introduction" },
-      { scene: forest, name: "Fosrest", id: "Forest" },
+      // { scene: introduction, name: "Introduction", id: "Introduction" },
+      // { scene: forest, name: "Fosrest", id: "Forest" },
       { scene: glade, name: "Glade", id: "Glade" },
       { scene: city1, name: "City1", id: "City1" },
       { scene: city2, name: "City2", id: "City2" },

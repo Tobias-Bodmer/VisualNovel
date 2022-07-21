@@ -1,8 +1,9 @@
 namespace Template {
     export async function portal(): ƒS.SceneReturn {
-        await ƒS.Location.show(locations.portal);
-
+       
         ƒS.Sound.fade(sound.portal, 0.5, 4, true);
+        
+        await ƒS.Location.show(locations.portal);
 
         await ƒS.Character.show(characters.Blackangel, characters.Blackangel.pose.black, ƒS.positionPercent(80, 100));
 

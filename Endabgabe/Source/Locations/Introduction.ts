@@ -56,7 +56,7 @@ namespace Template {
                 break;
         }
 
-        await shakeyCamera();
+        await shakyCamera();
 
         await ƒS.Sound.fade(sound.city, 0.05, 0.5, true);
 
@@ -119,7 +119,7 @@ namespace Template {
                 break;
         }
 
-        await shakeyCamera();
+        await shakyCamera();
 
         await erzähler.erzählerSpeaks("???", "We have manipulated your VR-Headsets.");
 

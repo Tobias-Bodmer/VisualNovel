@@ -3,13 +3,13 @@ namespace Template {
 
         dataForSave.Glade = true;
 
-        await ƒS.Location.show(locations.waldNacht);
-
         ƒS.Sound.fade(sound.forestNight, 0.5, 4, true);
+        
+        await ƒS.Location.show(locations.waldNacht);
+        await ƒS.update(2, "./Images/wet.jpg", 1);
 
         await ƒS.Character.show(characters.Bush, characters.Bush.pose.normal, ƒS.positionPercent(80, 100));
-
-        await ƒS.update(1);
+        await ƒS.update();
 
         await ƒS.Text.print("Du kommst bei der Lichtung des Buches an.");
 
@@ -17,7 +17,8 @@ namespace Template {
 
         await ƒS.Speech.tell(characters.Protagonist, characters.Protagonist.text.T0026);
 
-        await shakeyCamera();
+        ƒS.Sound.fade(sound.bush, 0.5, 0, false);
+        await shakyCamera();
 
         await ƒS.Character.hide(characters.Protagonist);
         await ƒS.Character.show(characters.Protagonist, characters.Protagonist.pose.scared, ƒS.positionPercent(20, 100));

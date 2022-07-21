@@ -12,7 +12,8 @@ namespace Template {
         ending: "Sounds/Ending.mp3",
 
         //Sound
-        shakeyCamera: "Sounds/ShackyCamera.mp3",
-    };
+        shakyCamera: "Sounds/ShackyCamera.mp3",
 
+        bush: "Sounds/Bush.mp3"
+    };
 }

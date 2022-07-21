@@ -54,7 +54,7 @@ declare namespace Template {
         duration: number;
         playmode: ƒ.ANIMATION_PLAYMODE;
     };
-    function shakeyCamera(): Promise<void>;
+    function shakyCamera(): Promise<void>;
 }
 declare namespace Template {
     let characters: {
@@ -298,7 +298,8 @@ declare namespace Template {
         forestNight: string;
         portal: string;
         ending: string;
-        shakeyCamera: string;
+        shakyCamera: string;
+        bush: string;
     };
 }
 declare namespace Template {

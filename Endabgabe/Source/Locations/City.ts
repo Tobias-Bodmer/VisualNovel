@@ -1,9 +1,9 @@
 namespace Template {
     export async function city1(): ƒS.SceneReturn {
 
-        await ƒS.Location.show(locations.bruecke);
-
         ƒS.Sound.fade(sound.city, 0.5, 4, true);
+        
+        await ƒS.Location.show(locations.bruecke);
 
         await ƒS.update(1);
 
@@ -38,9 +38,9 @@ namespace Template {
 
     export async function city2(): ƒS.SceneReturn {
 
-        await ƒS.Location.show(locations.bruecke);
-
         ƒS.Sound.fade(sound.city, 0.5, 4, true);
+        
+        await ƒS.Location.show(locations.bruecke);
 
         await ƒS.update(1);
 
