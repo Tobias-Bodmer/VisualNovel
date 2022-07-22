@@ -21,8 +21,8 @@ var Template;
         gameMenu = Template.ƒS.Menu.create(inGameMenu, buttonFunctionalities, "gameMenu");
         gameMenu.close();
         let scenes = [
-            // { scene: introduction, name: "Introduction", id: "Introduction" },
-            // { scene: forest, name: "Fosrest", id: "Forest" },
+            { scene: Template.introduction, name: "Introduction", id: "Introduction" },
+            { scene: Template.forest, name: "Fosrest", id: "Forest" },
             { scene: Template.glade, name: "Glade", id: "Glade" },
             { scene: Template.city1, name: "City1", id: "City1" },
             { scene: Template.city2, name: "City2", id: "City2" },
