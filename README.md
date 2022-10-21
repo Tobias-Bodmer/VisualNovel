@@ -11,7 +11,7 @@ F9: Lädt den Speicherstand
 ## Bewertungskriterien
 | Nr | Bezeichnung                      | Inhalt |
 |---:|----------------------------------|------|
-|    | Titel                            | Genisis Inception |
+|    | Titel                            | Genesis Inception |
 |    | Name                             | Tobias Bodmer |
 |    | Matrikelnummer                   | 260528 |
 |  1 | Konzeption                       | Siehe [Konzept](https://github.com/Tobias-Bodmer/VisualNovel/blob/main/Konzept.pdf). |
